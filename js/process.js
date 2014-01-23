@@ -10,15 +10,13 @@ var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
 var root = 'https://395703303.firebaseIO-demo.com/';
 
 $(function(){
+	loginpanel = $('#login');
+	chatpanel = $('#chat');
 	loginpanel.hide();
 	chatpanel.hide();
 	userRef = new Firebase(root + 'userlist/');
 	messagesRef = new Firebase(root + 'messagelist/');
 	messagelisten = new Firebase(root + 'messagelist/');
-	loginpanel = $('#login');
-	chatpanel = $('#chat');
-	loginpanel.hide();
-	chatpanel.hide();
 	userRef.on('value', function(snapshot) {
 		userlist = snapshot.val();
 		if(islogin()){
