@@ -56,6 +56,10 @@ function login(){
     });
 }
 
+function error(message){
+    $('#error').text(message);
+}
+
 function register(){
 	var username = $('#registername').val();
 	var password = $('#registerpassword').val();
@@ -77,13 +81,6 @@ function register(){
 	loadMainPanel(username);
 }
 
-function loadMainPanel(username){
-	setCurrentName(username);
-	ini();
-	loginpanel.hide();
-	chatpanel.fadeIn();
-}
-
 function logout(){
 	islogin = false;
 	resetCurrentName();
@@ -91,15 +88,19 @@ function logout(){
 	loginpanel.fadeIn();
 }
 
-function error(message){
-    $('#error').text(message);
+function loadMainPanel(username){
+	setCurrentName(username);
+	ini();
+	loginpanel.hide();
+	chatpanel.fadeIn();
 }
 
 function ini(){
 	var users = $('#userspanel');
 	users.empty();
 	$.each(userlist, function (n, value) {
-		addToList(users,n,value.username);
+		if(value.username != getCurrentName())
+			addToList(users,n,value.username);
 	});
 	$('#currentName').text(getCurrentName());
 	$('#messagepanel').hide();
