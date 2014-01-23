@@ -4,7 +4,7 @@ var chatpanel;
 var userRef;
 var messagesRef;
 var messagelisten;
-var islogin = false;
+
 var storage = window.sessionStorage;
 var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
 var root = 'https://395703303.firebaseIO-demo.com/';
@@ -17,17 +17,17 @@ $(function(){
 	chatpanel = $('#chat');
 	loginpanel.hide();
 	chatpanel.hide();
-	if(getCurrentName()!=null){
-		islogin = true;
-	}
 	userRef.on('value', function(snapshot) {
 		userlist = snapshot.val();
-		if(islogin){
+		if(islogin()){
 			if(!chatpanel.is(':visible'))
 				chatpanel.fadeIn();
 			ini();
 		}
-		else loginpanel.fadeIn();
+		else{
+			loginpanel.fadeIn();
+			chatpanel.hide();
+		}
 	});
 });
 
@@ -54,6 +54,11 @@ function login(){
         	}
         }
     });
+}
+
+
+function islogin(){
+	return getCurrentName()!=null;
 }
 
 function error(message){
@@ -150,7 +155,6 @@ function talkToUser(id){
 	var talkToName = userlist[id].username;
 
 	if(talkToName == getCurrentName()){
-		alert("不能与自己聊天。");
 		return;
 	}
 
