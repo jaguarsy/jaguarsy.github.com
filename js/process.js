@@ -104,10 +104,18 @@ function loadMainPanel(username){
 function ini(){
 	var users = $('#userspanel');
 	users.empty();
+	var currentuser;
 	$.each(userlist, function (n, value) {
 		if(value.username != getCurrentName())
-			addToList(users,n,value.username);
+			addToList(users,n,value.username,value.photo);
+		else
+			currentuser = value;
 	});
+
+	users.prepend('<a class="list-group-item headphoto"><img src="' + currentuser.photo + 
+		'" height="50">' + currentuser.username + 
+		'</a>')
+
 	$('#currentName').text(getCurrentName());
 	$('#messagepanel').hide();
 
@@ -125,9 +133,10 @@ function ini(){
   	});
 }
 
-function addToList(panel,id,name){
+function addToList(panel,id,name,photo){
 	panel.append('<a href="javascript:void(0)" class="list-group-item" onclick="talkToUser(\'' 
 		+ id + '\')"><span class="badge" id="user_' + name + '"></span>' + 
+		'<img src="'+ photo + '" height="30" width="30"/>' +
 		name + '</a>');
 }
 
@@ -240,4 +249,20 @@ function getTime(){
   if(sec<10)sec="0"+sec;
 
   return date.toLocaleDateString()+" "+hour+":"+min_+":"+sec;
+}
+
+function setting(){
+	var photosrc = $('#photosrc').val();
+	if(photosrc=="") alert("请输入头像链接。");
+
+	$.each(userlist, function (n, value) {
+		if(value.username == getCurrentName()){
+			var photoref = new Firebase(root + "userlist/" + n);
+			photoref.update({photo: photosrc});
+			return;
+		}
+	});
+
+
+	$('#settings').modal('hide');
 }

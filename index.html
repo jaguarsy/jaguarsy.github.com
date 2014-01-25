@@ -33,6 +33,9 @@
   					<div class="panel-heading">
   						<span class="glyphicon glyphicon-user"></span>
   						用户列表
+              <a href="#" class="pull-right" title="设置" data-toggle="modal" data-target="#settings">
+              <span class="glyphicon glyphicon-cog"></span>
+              </a>
   					</div>
   					<div class="list-group" id="userspanel"></div>
 				</div>
@@ -63,7 +66,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
+	<!-- Register Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content">
@@ -79,7 +82,8 @@
   			<div class="form-group">
     			<label for="password">密码</label>
     			<input type="password" class="form-control" id="registerpassword" placeholder="密码">
-  			</div><div class="form-group">
+  			</div>
+        <div class="form-group">
     			<label for="password">确认密码</label>
     			<input type="password" class="form-control" id="confirmpassword" placeholder="确认密码">
   			</div>
@@ -91,6 +95,27 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+    <!-- settings Modal -->
+  <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="settingsLabel">用户设置</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="photo">修改头像链接</label>
+            <input type="text" class="form-control" id="photosrc" placeholder="输入链接">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary" onclick="setting()">提交</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 	<footer class=""></footer>
 	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
