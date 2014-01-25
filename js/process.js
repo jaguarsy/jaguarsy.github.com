@@ -54,6 +54,7 @@ function login(){
         	}
         }
     });
+    error("用户名不存在。");
 }
 
 
@@ -110,7 +111,7 @@ function ini(){
 	$('#currentName').text(getCurrentName());
 	$('#messagepanel').hide();
 
-	messagelisten.limit(10).on('child_added', function (snapshot) {
+	messagelisten.limit(50).on('child_added', function (snapshot) {
     	var message = snapshot.val();
     	if(message.hasread == '0'){
     		if(message.user != getCurrentName() && message.to == getCurrentName()){
@@ -166,7 +167,7 @@ function talkToUser(id){
 	$('#messagesDiv').empty();
 
 	messagesRef.off('child_added');
-	messagesRef.limit(10).on('child_added', function (snapshot) {
+	messagesRef.limit(100).on('child_added', function (snapshot) {
     	var message = snapshot.val();
     	if(message.user == $('#talkto').text() && message.to == getCurrentName()){
 			updateUnReadMsg(talkToName);
