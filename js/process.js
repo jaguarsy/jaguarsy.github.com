@@ -54,7 +54,8 @@ function login(){
         	}
         }
     });
-    error("用户名不存在。");
+    if(!islogin)
+    	error("用户名不存在。");
 }
 
 
