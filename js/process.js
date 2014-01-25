@@ -112,8 +112,8 @@ function ini(){
 			currentuser = value;
 	});
 
-	users.prepend('<a class="list-group-item headphoto"><img src="' + currentuser.photo + 
-		'" height="50">' + currentuser.username + 
+	users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
+		+ currentuser.photo + '" height="50">' + currentuser.username + 
 		'</a>')
 
 	$('#currentName').text(getCurrentName());
@@ -200,7 +200,7 @@ function talkToUser(id){
     		$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
     	}
   	});
-
+	$('#messageInput').focus();
   	$('#messageInput').keypress(function (e) {
     	if (e.keyCode == 13) {
 			sendMessage();
