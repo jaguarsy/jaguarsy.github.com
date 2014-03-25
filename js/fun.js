@@ -25,8 +25,6 @@ $(function(){
     articleRef.limit(50).on('child_added', function (snapshot) {
     	var art = snapshot.val();
     	home.append(template.temp(art));
-    	var child = $('#home>div:last-child').hide();
-    	child.fadeIn();
   	});
 
 });
