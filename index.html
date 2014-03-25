@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>Johnny's Blog</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
@@ -16,14 +17,7 @@
         <br>
         <div class="tab-content pull-left left-content">
             <div class="tab-pane fade active in" id="home">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Panel title</h3>
-                    </div>
-                    <div class="panel-body">
-                        Panel content
-                    </div>
-                </div>
+
             </div>
             <div class="tab-pane fade" id="articles">
                 <p>test.</p>
@@ -34,6 +28,17 @@
         </div>
         <div class="pull-right right-content">
             <div id="music">music put here.</div>
+        </div>
+    </div>
+
+    <div id="template-article" class="hidden">
+    	<div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">$title$</h3>
+            </div>
+            <div class="panel-body">
+                $content$
+            </div>
         </div>
     </div>
 

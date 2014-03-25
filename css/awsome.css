@@ -1,6 +1,7 @@
-*{font-family:微软雅黑;}
+*{font-family:微软雅黑 !important;}
 
 .left-content{ width: 80%; }
 .right-content{ width: 20%; }
+.hidden{ display: none; }
 
 #music{ margin:10px; }
