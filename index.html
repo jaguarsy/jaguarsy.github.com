@@ -8,56 +8,55 @@
     <link rel="stylesheet" type="text/css" href="css/awsome.css">
 </head>
 <body>
-    <header class="navbar-fixed-top" role="navigation">
-        <div class="container">
-            <ul id="maintab" class="breadcrumb">
-                <li class="active"><a href="#home">Home</a></li>
-                <li><a href="#articles">Aricles</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="tab-content pull-left content left-content">
-            <div class="tab-pane fade active in" id="home">
-
+    <div id="wapper">
+        <header class="navbar-fixed-top" role="navigation">
+            <div class="container">
+                <ul id="maintab" class="breadcrumb">
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#articles">Aricles</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
             </div>
-            <div class="tab-pane fade" id="articles">
+        </header>
+        <div id="main-content" class="container">
+            <div class="tab-content pull-left content left-content">
+                <div class="tab-pane fade active in" id="home">
+
+                </div>
+                <div class="tab-pane fade" id="articles">
                 
-            </div>
-            <div class="tab-pane fade" id="about">
-                <p>Johnny Cage.</p>
-            </div>
-        </div>
-        <div class="pull-right content right-content">
-            <div id="music">music put here.</div>
-        </div>
-    </div>
-
-    <div id="template-article" class="hidden">
-    	<div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><a data-toggle="collapse" data-toggle="collapse" data-parent="#home" href="#$id$">$title$</a></h3>
-            </div>
-            <div id="$id$" class="panel-collapse collapse">
-                <div class="panel-body">
-                    $content$
+                </div>
+                <div class="tab-pane fade" id="about">
+                    <p>Johnny Cage.</p>
                 </div>
             </div>
-            <div class="panel-footer">
-                <small class="text-primary">$author$</small>
-                <small>发布于&nbsp;$time$</small>
+            <div class="pull-right content right-content">
+                <div id="music">music put here.</div>
+            </div>
+
+            <div id="template-article" class="hidden">
+    	       <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><a data-toggle="collapse" data-toggle="collapse" data-parent="#home" href="#$id$">$title$</a></h3>
+                    </div>
+                    <div id="$id$" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            $content$
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <small class="text-primary">$author$</small>
+                        <small>发布于&nbsp;$time$</small>
+                    </div>
+                </div>
             </div>
         </div>
+        <footer id="footer" class="bs-footer" role="contentinfo">
+            <div class="container">
+                <small class="pull-right">© 2014 <a href="#" target="_blank">Johnny</a>. All Rights Reserved. Powered by <a href="http://v3.bootcss.com/">Bootstrap v3.0.3</a></small>
+            </div>
+        </footer>
     </div>
-
-    <footer class="bs-footer" role="contentinfo">
-        <div class="container">
-            <p class="text-center">© 2014 <a href="#" target="_blank">Johnny</a>. All Rights Reserved. </p>
-            <p class="text-center">Powered by <a href="http://v3.bootcss.com/">Bootstrap v3.0.3</a></p>
-        </div>
-    </footer>
 
     <script type="text/javascript" charset="utf-8" src="js/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
