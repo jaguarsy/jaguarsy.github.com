@@ -6,6 +6,7 @@ var articles;
 String.prototype.temp = function(obj) {
     return this.replace(/\$\w+\$/gi, function(matchs) {
         var returns = obj[matchs.replace(/\$/g, "")];
+        returns = returns.replace(/<img/g,'<img class="img-responsive"'); //修改所有图片为响应式
         return (returns + "") == "undefined" ? "" : returns;
     });
 }
