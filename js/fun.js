@@ -25,6 +25,16 @@ $(function(){
     	home.append(template.temp(art));
   	});
 
+    window.onscroll = function () {  
+        var top = document.documentElement.scrollTop || document.body.scrollTop;  
+        $('.article').each(function(){
+            if($(this).nextAll().length===0) return;
+            //精度不够
+            if(Math.abs(top-$(this).offset().top)<=2){
+                console.log($(this).children(':first').html());
+            }
+        });
+    };
 });
 
 function getTime(){ 
