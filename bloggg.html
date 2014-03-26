@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="container">
+		<textarea id="content" class="form-control" rows="30"></textarea>
+		<small id="tip"></small>
+		<button class="btn btn-default pull-right" onclick="a()">Publish!</button>
+	</div>
+
+	<script type="text/javascript" charset="utf-8" src="js/firebase.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/guid.js"></script>
+	<script type="text/javascript">
+		var t;
+		var storage = window.localStorage;
+		var root = 'https://395703303blog.firebaseIO-demo.com/';
+		articleRef = new Firebase(root + 'articles/');
+
+		if(storage){
+			document.getElementById("content").innerHTML = storage.getItem("article");
+			t = setInterval(autoSave,10000);
+		}
+
+		function autoSave(){
+			storage.setItem("article",document.getElementById("content").value.toString());
+			document.getElementById("tip").innerText = "草稿已保存 于 " + getTime();
+		}
+
+		function a(){
+			clearInterval(t);
+
+			var content = document.getElementById("content").value.toString();
+			content = content.replace(/</g, '&lt;')
+							 .replace(/>/g, '&gt;')
+							 .replace(/(\r)*\n/g,"<br/>")
+							 .replace(/\s/g,"&nbsp;");
+			
+
+			articleRef.push({
+				id:Guid.NewGuid().ToString(),
+				title:"测试标题", 
+				content:content, 
+				author:"Johnny", 
+				time:getTime()
+			});
+			document.getElementById("content").value = "";
+			storage.setItem("article","");
+			alert("已发布。");
+		}
+
+		function getTime(){ 
+  			var date = new Date();
+  			var hour = date.getHours();
+  			var min_ = date.getMinutes(); 
+  			var sec = date.getSeconds();
+  			if(hour<10)hour="0"+hour;
+  			if(min_<10)min_="0"+min_;
+  			if(sec<10)sec="0"+sec;
+
+  			return hour+"时"+min_+"分"+sec+"秒";
+		}
+	</script>
+</body>
+</html>
+
+

@@ -1,7 +1,9 @@
 *{font-family:微软雅黑 !important;}
 
-.left-content{ width: 80%; }
+.content{ margin-top: 50px; }
+.left-content{ width: 80%;}
 .right-content{ width: 20%; }
-.hidden{ display: none; }
+.panel-default>.panel-heading{ background-image: none; }
+.panel-footer{ padding: 0 0 4px 15px; }
 
 #music{ margin:10px; }
