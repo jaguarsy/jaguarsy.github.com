@@ -25,20 +25,20 @@
 		articleRef = new Firebase(root + 'articles/');
 
 		if(storage){
-			document.getElementById("content").innerHTML = storage.getItem("article");
+			$("content").innerHTML = storage.getItem("article");
 			t = setInterval(autoSave,10000);
 		}
 
 		function autoSave(){
-			storage.setItem("article",document.getElementById("content").value.toString());
-			document.getElementById("tip").innerText = "草稿已保存 于 " + getTime();
+			storage.setItem("article",$("content").value.toString());
+			$("tip").innerText = "草稿已保存 于 " + getTime();
 		}
 
 		function a(){
 			clearInterval(t);
 
-			var content = document.getElementById("content").value.toString();
-			var title = document.getElementById("title").value;
+			var content = $("content").value.toString();
+			var title = $("title").value;
 			content = content.replace(/</g, '&lt;')
 							 .replace(/>/g, '&gt;')
 							 .replace(/(\r)*\n/g,"<br/>")
@@ -52,7 +52,8 @@
 				author:"Johnny", 
 				time:getTime()
 			});
-			document.getElementById("content").value = "";
+			$("content").value = "";
+			$("title").value = "";
 			storage.setItem("article","");
 			alert("已发布。");
 		}
@@ -67,6 +68,10 @@
   			if(sec<10)sec="0"+sec;
 
   			return hour+"时"+min_+"分"+sec+"秒";
+		}
+
+		function $(id){
+			return document.getElementById(id);
 		}
 	</script>
 </body>
