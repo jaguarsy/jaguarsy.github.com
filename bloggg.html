@@ -5,6 +5,7 @@
 	<title>test</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="js/themes/default/default.css">
 </head>
 <body>
 	<div class="container">
@@ -18,7 +19,25 @@
 
 	<script type="text/javascript" charset="utf-8" src="js/firebase.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/guid.js"></script>
+	<script type="text/javascript" src="js/kindeditor-min.js"></script>
+	<script type="text/javascript" src="js/zh_CN.js"></script>
 	<script type="text/javascript">
+
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('#content', {
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : false,
+					items : [
+						'fontname', 'fontsize', 'code','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+				});
+			});
+		
+
+
 		var t;
 		var storage = window.localStorage;
 		var root = 'https://395703303blog.firebaseIO-demo.com/';
@@ -26,25 +45,28 @@
 
 		if(storage){
 			$("content").innerHTML = storage.getItem("article");
+			$("title").innerText = storage.getItem("title");
 			t = setInterval(autoSave,10000);
 		}
 
 		function autoSave(){
+			editor.sync('content'); //同步editor数据到textarea
 			storage.setItem("article",$("content").value.toString());
-			$("tip").innerText = "草稿已保存 于 " + getTime();
+			storage.setItem("title",$("title").value);
+
+			$("tip").innerText = "草稿已保存 于 " + getTime()+$("content").value.toString();
 		}
 
 		function a(){
 			clearInterval(t);
-
+			editor.sync('content'); 
 			var content = $("content").value.toString();
 			var title = $("title").value;
-			content = content.replace(/</g, '&lt;')
-							 .replace(/>/g, '&gt;')
-							 .replace(/(\r)*\n/g,"<br/>")
-							 .replace(/\s/g,"&nbsp;");
+			// content = content.replace(/</g, '&lt;')
+			// 				 .replace(/>/g, '&gt;')
+			// 				 .replace(/(\r)*\n/g,"<br/>")
+			// 				 .replace(/\s/g,"&nbsp;");
 			
-
 			articleRef.push({
 				id:Guid.NewGuid().ToString(),
 				title:title, 
@@ -52,9 +74,11 @@
 				author:"Johnny", 
 				time:getTime()
 			});
-			$("content").value = "";
-			$("title").value = "";
+
+			editor.html('');
 			storage.setItem("article","");
+			$("title").value = "";
+
 			alert("已发布。");
 		}
 
