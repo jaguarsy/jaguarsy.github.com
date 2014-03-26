@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<title>test</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 </head>
 <body>
 	<div class="container">
-		<a href="index.html">Back to Home</a>
-		<textarea id="content" class="form-control" rows="30"></textarea>
+		<p><a href="index.html">Back to Home</a></p>
+		<input id="title" type="text" class="form-control" placeholder="Title">
+		<br/>
+		<textarea id="content" class="form-control" rows="30" placeholder="Content"></textarea>
 		<small id="tip"></small>
 		<button class="btn btn-default pull-right" onclick="a()">Publish!</button>
 	</div>
@@ -35,6 +38,7 @@
 			clearInterval(t);
 
 			var content = document.getElementById("content").value.toString();
+			var title = document.getElementById("title").value;
 			content = content.replace(/</g, '&lt;')
 							 .replace(/>/g, '&gt;')
 							 .replace(/(\r)*\n/g,"<br/>")
@@ -43,7 +47,7 @@
 
 			articleRef.push({
 				id:Guid.NewGuid().ToString(),
-				title:"测试标题", 
+				title:title, 
 				content:content, 
 				author:"Johnny", 
 				time:getTime()
