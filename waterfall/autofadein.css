@@ -1,0 +1,11 @@
+.fade {
+	opacity: 0;
+	position: relative;
+	top: -20px;
+	-webkit-transition: opacity 600ms, top 600ms;
+	transition: opacity 600ms, top 600ms;
+}
+.fade-load {
+	opacity: 1;
+	top: 0;
+}
