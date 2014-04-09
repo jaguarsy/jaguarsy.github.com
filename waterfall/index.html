@@ -46,7 +46,7 @@
 			var imglist = [];
 			var n = 0;
 
-			for(var i=0;i<30;i++){
+			for(var i=0;i<20;i++){
 				var div = document.createElement("div");
 				div.setAttribute('class','imgpanel fade');
 				var image = new Image(); 
@@ -74,7 +74,7 @@
 					min.appendChild(imglist[i]);
 				}
 				//渐入
-				document.getElementsByClassName('fade').AutoFadeIn(true);
+				document.getElementsByClassName('fade').AutoFadeIn(30,true);
 			}
 		}
 

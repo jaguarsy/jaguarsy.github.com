@@ -32,14 +32,15 @@ function AutoFade(list){
 		return o;
 	};
 
-	this.ini = function(outorder){
+	this.ini = function(speed,outorder){
 		OutOfOrder = outorder;
+		loadspeed = speed;
 		newlist = shuffle(list.length);
 		setTimeout(incFade,loadspeed);
 	}
 }
 
-Object.prototype.AutoFadeIn = function(outorder){
+Object.prototype.AutoFadeIn = function(speed,outorder){
 	var obj = new AutoFade(this);
-	obj.ini(outorder);
+	obj.ini(speed,outorder);
 }
