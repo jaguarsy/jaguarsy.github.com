@@ -43,28 +43,46 @@
 			var groups = document.getElementsByClassName("group");
 			var length = groups.length;
 			var min;
+			var imglist = [];
+			var n = 0;
 
 			for(var i=0;i<30;i++){
 				var div = document.createElement("div");
 				div.setAttribute('class','imgpanel fade');
-				var img = new Image(); 
-       			img.src = "images/"+ Rand(1,17) +".jpg";
-				div.appendChild(img);
+				var image = new Image(); 
+       			image.src = "images/"+ Rand(1,17) +".jpg";
 
-       			min = groups[0];
-       			for(var j=1;j<length;j++){
+        		div.appendChild(image);
+       			imglist.push(div);
+
+       			image.onload = function() {
+        			n++;
+        			if (n == imglist.length) {
+						show();
+        			}
+        		}
+			}
+
+			var show = function(){
+				for(i=0;i<imglist.length;i++){    			
+       				min = groups[0];
+       				for(var j=1;j<length;j++){
        				if(groups[j].offsetHeight < min.offsetHeight){
        					min = groups[j];
        				}
        			}
-
-				min.appendChild(div);
+				min.appendChild(imglist[i]);
+				}
+				document.getElementsByClassName('fade').AutoFadeIn(true);
 			}
 		}
 
+
+
+
 		waterfall();
 		//渐入
-		document.getElementsByClassName('fade').AutoFadeIn(true);
+		//document.getElementsByClassName('fade').AutoFadeIn(true);
 	</script>
 </body>
 </html>
