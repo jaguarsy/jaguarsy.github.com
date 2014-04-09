@@ -32,12 +32,6 @@ function AutoFade(list){
 		return o;
 	};
 
-	var rand = function(Min, Max) {
-            var Range = Max - Min;
-            var Rand = Math.random();
-            return (Min + Math.round(Rand * Range));
-        }
-
 	this.ini = function(outorder){
 		OutOfOrder = outorder;
 		newlist = shuffle(list.length);

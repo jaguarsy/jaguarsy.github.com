@@ -67,22 +67,18 @@
 				for(i=0;i<imglist.length;i++){    			
        				min = groups[0];
        				for(var j=1;j<length;j++){
-       				if(groups[j].offsetHeight < min.offsetHeight){
-       					min = groups[j];
+       					if(groups[j].offsetHeight < min.offsetHeight){
+       						min = groups[j];
+       					}
        				}
-       			}
-				min.appendChild(imglist[i]);
+					min.appendChild(imglist[i]);
 				}
+				//渐入
 				document.getElementsByClassName('fade').AutoFadeIn(true);
 			}
 		}
 
-
-
-
 		waterfall();
-		//渐入
-		//document.getElementsByClassName('fade').AutoFadeIn(true);
 	</script>
 </body>
 </html>
