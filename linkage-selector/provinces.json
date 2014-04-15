@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "label": "上海",
+            "value": "上海",
+            "data": [
+                { "label": "宝山", "value": "宝山" },
+                { "label": "黄浦", "value": "黄浦" }
+            ]
+        },
+        {
+            "label": "广西",
+            "value": "广西",
+            "data": [
+                { "label": "南宁", "value": "南宁" },
+                { "label": "梧州", "value": "梧州" }
+            ]
+        }
+    ]
+}
