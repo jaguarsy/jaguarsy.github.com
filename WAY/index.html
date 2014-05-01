@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$.getJSON("http://api.map.baidu.com/place/v2/search?&query=%E5%BF%85%E8%83%9C%E5%AE%A2&region=%E6%9D%AD%E5%B7%9E&output=json&ak=E58a9b77f9625b1cb0058133aa00a2c3&page_size=100",function(result){
+    		$.each(result, function(i, field){
+      		$("div").append(field + " ");
+    	});
+  	});
+</script>
+
+</body>
+</html>
