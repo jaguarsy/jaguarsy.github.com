@@ -1,0 +1,9 @@
+html{height: 100%}
+body{height: 100%;margin: 0px;padding: 0px}
+
+.top{width:100%;padding:10px 0 10px 0;}
+.container{width: 50%;margin: 0 auto;}
+
+#keyword{width: 80%;}
+#submit{width: 15%;}
+#result{height: 100%;}
