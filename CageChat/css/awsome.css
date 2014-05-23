@@ -1,0 +1,10 @@
+*{font-family:微软雅黑;}
+
+.middle{margin:0 auto;}
+.headphoto{background-color: #EEEEEE;}
+.list-group-item img{margin-right: 10px;}
+
+#login{width:300px; margin-top: 100px;}
+#chat{margin-top: 20px;}
+#messagesDiv{padding:5px 10px 0 10px;width: 100%; border:1px solid #DDDDDD;height: 200px;overflow:scroll}
+#messageInput{margin: 10px 0 10px 0;}
