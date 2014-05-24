@@ -4,7 +4,8 @@ small{
 }
 
 .container{
-	width: 800px;
+	width: 60%;
+	min-width: 300px;
 	margin: 0 auto;
 }
 
