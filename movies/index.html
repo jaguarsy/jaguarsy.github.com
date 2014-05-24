@@ -3,22 +3,23 @@
 <head>
 	<title>电影资源</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/awsome.css"></head>
 <body>
 	<div class="container">
 		<br/>
-		<div style="margin:0 auto;width:600px">
-			<div class="input-group">
-				<input type="text" id="searchtext" class="form-control" placeholder="Search">
-				<span class="input-group-btn">
-					<button class="btn btn-default" id="search" type="button">Go!</button>
-				</span>
-			</div>
-			<p id="state"></p>
+		<div class="input-group">
+			<input type="text" id="searchtext" class="form-control" placeholder="Search">
+			<span class="input-group-btn">
+				<button class="btn btn-default" id="search" type="button">Go!</button>
+			</span>
 		</div>
+		<p id="state"></p>
 		<hr/>
-		<p><small id="count"></small></p>
+		<p>
+			<small id="count"></small>
+		</p>
 		<div id="list"></div>
 	</div>
 	<script type="text/template" id="template">
