@@ -7,6 +7,16 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 	var titles = new Firebase('https://409728463.firebaseIO-demo.com/titles');
 
 	$("#search").click(function(){
+		s();
+	});
+
+	$("#searchtext").keydown(function(e){
+		if(e.keyCode==13){
+			s();
+		}
+	});
+
+	function s(){
 		list.empty();
 		state.text("正在搜索...");
 		var keyword = $("#searchtext").val();
@@ -21,7 +31,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 				state.text("");
 			}
 		});
-	});
+	}
 }())
 
 function showlinks(id){
