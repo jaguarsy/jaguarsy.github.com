@@ -5,13 +5,18 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 	var list = $("#list");
 	var state = $("#state");
 	var titles = new Firebase('https://409728463.firebaseIO-demo.com/titles');
+	var isSearching = false;
 
 	$("#search").click(function(){
+		if(isSearching) return false;
+		isSearching = true;
 		s();
 	});
 
 	$("#searchtext").keydown(function(e){
 		if(e.keyCode==13){
+			if(isSearching) return false;
+			isSearching = true;
 			s();
 		}
 	});
