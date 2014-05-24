@@ -70,7 +70,9 @@ function showlinks(id){
 			div.append($("<br>"));
 			div.append($("<small>").text("大小：" + m.size));
 			div.append($("<br>"));
-			div.append($("<small>").text( m.href));
+			var a = $("<a>").append($("<small>").text(m.href));
+			a.attr("href",m.href)
+			div.append(a);
 			$("#"+id).append(div)
 		}
 	});
