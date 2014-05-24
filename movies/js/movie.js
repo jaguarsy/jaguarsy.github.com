@@ -21,9 +21,10 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 		state.text("正在搜索...如果是首次搜索会比较慢，请耐心等候- -");
 		var keyword = $("#searchtext").val();
 		var sum = 0;
+		var flag = true;
 		titles.limit(20000).on('child_added', function(data) {
 			sum ++;
-			if(sum>18100){
+			if(sum>18100&&flag){
 				setTimeout(end,1000);
 			}
 			if(data.val().title.indexOf(keyword)>-1){
@@ -33,6 +34,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 					"showlinks('"+data.val().id+"')");
 				movie.attr("id",data.val().id);
 				list.append(movie);
+				flag = false;
 				state.text("");
 			}
 		});
