@@ -44,6 +44,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 				movie.attr("id",data.val().id);
 				list.append(movie);
 				flag = false;
+				isSearching = false;
 				state.text("");
 			}
 		});
