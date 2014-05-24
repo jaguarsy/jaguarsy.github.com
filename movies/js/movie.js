@@ -42,12 +42,13 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 				setTimeout(end,1000);
 				isSearching = false;
 			}
-			if(data.val().title.indexOf(keyword)>-1){
+			var title = data.val().title;
+			if(title.indexOf(keyword)>-1||title.contains(keyword)){
 				count++;
 				counter.html("共有"+count+"条结果。");
 
 				var movie = $(template);
-				movie.find(".title:first").text(data.val().title);
+				movie.find(".title:first").text(title);
 				movie.find(".download:first").attr("onclick",
 					"showlinks('"+data.val().id+"')");
 				movie.attr("id",data.val().id);
@@ -91,9 +92,19 @@ function showlinks(id){
 			div.append($("<small>").text("大小：" + m.size));
 			div.append($("<br>"));
 			var a = $("<a>").append($("<small>").text(m.href));
-			a.attr("href",m.href)
+			a.attr("href",m.href);
 			div.append(a);
-			$("#"+id).append(div)
+			$("#"+id).append(div);
 		}
 	});
 }
+
+String.prototype.contains = function(str) {
+	var value = 0;
+	for (var i = str.length - 1; i >= 0; i--) {
+		if(this.indexOf(str[i])>-1){
+			value++;
+		}
+	};
+	return value>str.length/2;
+};
