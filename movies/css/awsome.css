@@ -1,4 +1,13 @@
+h5{
+	word-wrap: break-word;
+	word-break: normal;
+}
+
 .container{
 	width: 1000px;
 	margin: 0 auto;
+}
+
+.download{
+	cursor: pointer;
 }

@@ -21,6 +21,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 		state.text("正在搜索...如果是首次搜索会比较慢，请耐心等候- -");
 		var keyword = $("#searchtext").val();
 		var sum = 0;
+		var count = 0;
 		var flag = true;
 		titles.limit(20000).on('child_added', function(data) {
 			sum ++;
@@ -28,6 +29,9 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 				setTimeout(end,1000);
 			}
 			if(data.val().title.indexOf(keyword)>-1){
+				count++;
+				$("#count").html("共有"+count+"条结果。");
+
 				var movie = $(template);
 				movie.find(".title:first").text(data.val().title);
 				movie.find(".download:first").attr("onclick",
@@ -55,12 +59,18 @@ function showlinks(id){
 	var target = movies.child(id);
 	target.once('value', function(value) {
 		var down = value.val().download;
+
 		for(var i=0;i<down.length;i++){
 			var m = down[i];
 			var div = $("<div class='links'>");
-			div.append($("<p>").text(m.name+","+m.format+","+m.size));
-			div.append($("<p>").text(m.href));
 			div.append($("<hr>"));
+			div.append($("<small>").text("名称：" + m.name));
+			div.append($("<br>"));
+			div.append($("<small>").text("清晰度：" + m.format));
+			div.append($("<br>"));
+			div.append($("<small>").text("大小：" + m.size));
+			div.append($("<br>"));
+			div.append($("<small>").text( m.href));
 			$("#"+id).append(div)
 		}
 	});
