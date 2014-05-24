@@ -109,5 +109,22 @@
 	</div>
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap-select.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+                    type: "GET", 
+                    async: false,
+                    dataType : "jsonp",
+                    url: "http://ea.codehut.me/api/v1/trimesters",
+
+                    beforeSend: function(request) {
+                        request.setRequestHeader("key", "examAssistant");
+                    },
+                    success: function(result) {
+                        alert(result);
+                    }
+                });
+		});
+	</script>
 </body>
 </html>
