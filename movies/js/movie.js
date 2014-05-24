@@ -32,6 +32,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 			sum ++;
 			if(sum>18100&&flag){
 				setTimeout(end,1000);
+				isSearching = false;
 			}
 			if(data.val().title.indexOf(keyword)>-1){
 				count++;
@@ -45,13 +46,18 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 				list.append(movie);
 				flag = false;
 				isSearching = false;
-				state.text("");
+				clear();
 			}
 		});
 	}
 
 	function end(){
 		state.text('Sorry，找不到你想要搜索的电影...');
+		setTimeout(clear,1000);
+	}
+
+	function clear(){
+		state.text("");
 	}
 }())
 
