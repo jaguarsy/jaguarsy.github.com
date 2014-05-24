@@ -1,11 +1,13 @@
 var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 
 (function(){
-	var template = $("#template").html();
-	var list = $("#list");
-	var state = $("#state");
-	var titles = new Firebase('https://409728463.firebaseIO-demo.com/titles');
-	var isSearching = false;
+	var 
+		template = $("#template").html(),
+		list = $("#list"),
+		counter = $("#count"),
+		state = $("#state"),
+		titles = new Firebase('https://409728463.firebaseIO-demo.com/titles'),
+		isSearching = false;
 
 	$("#search").click(function(){
 		if(isSearching) return false;
@@ -22,9 +24,15 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 	});
 
 	function s(){
+		counter.empty();
 		list.empty();
-		state.text("正在搜索...如果是首次搜索会比较慢，请耐心等候- -");
 		var keyword = $("#searchtext").val();
+		if(keyword.replace(/\s/g,"")==""){
+			isSearching = false;
+			return false;
+		}
+		state.text("正在搜索...如果是首次搜索会比较慢，请耐心等候- -");
+
 		var sum = 0;
 		var count = 0;
 		var flag = true;
@@ -36,7 +44,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 			}
 			if(data.val().title.indexOf(keyword)>-1){
 				count++;
-				$("#count").html("共有"+count+"条结果。");
+				counter.html("共有"+count+"条结果。");
 
 				var movie = $(template);
 				movie.find(".title:first").text(data.val().title);
