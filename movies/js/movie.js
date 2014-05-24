@@ -46,9 +46,12 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 }())
 
 function showlinks(id){
+	var flag = false;
 	$(".links").each(function(){
+		flag = $(this).parent().attr("id")==id;
 		$(this).remove();
 	});
+	if(flag)return false;
 	var target = movies.child(id);
 	target.once('value', function(value) {
 		var down = value.val().download;
