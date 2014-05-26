@@ -36,6 +36,7 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 		var sum = 0;
 		var count = 0;
 		var flag = true;
+		var result = [];
 		titles.limit(20000).on('child_added', function(data) {
 			sum ++;
 			if(sum>18100&&flag){
@@ -52,7 +53,19 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 				movie.find(".download:first").attr("onclick",
 					"showlinks('"+data.val().id+"')");
 				movie.attr("id",data.val().id);
-				list.append(movie);
+
+				// var target = movies.child(data.val().id);
+				// target.once('value', function(value) {
+				// 	movie.find(".douban:first").attr("href",
+				// 		"http://movie.douban.com/subject/"+value.val().dbid);
+				// });	
+
+				if(title.indexOf(keyword)>-1){
+					list.prepend(movie);
+				}
+				else{
+					list.append(movie);
+				}
 				flag = false;
 				isSearching = false;
 				clear();
@@ -68,6 +81,33 @@ var movies = new Firebase('https://409728463list.firebaseIO-demo.com/list');
 	function clear(){
 		state.text("");
 	}
+
+
+	String.prototype.contains = function(str) {
+		return this.similar(str) > 0.5;
+	};
+
+	String.prototype.similar = function(str){
+		var value = 0;
+		for (var i = str.length - 1; i >= 0; i--) {
+			if(this.indexOf(str[i])>-1){
+				value++;
+			}
+		};
+		return value/str.length;
+	}
+
+	function getInsert(similar){
+		var titles = $(".title");
+		var insert = titles.eq(-1);
+		for (var i = 0; i < titles.length; i++) {
+			if(similar>=titles[i].text().similar(keyword)){
+				insert = titles[i].parent();
+			}
+		}
+		return insert;
+	}
+
 }())
 
 function showlinks(id){
@@ -98,13 +138,3 @@ function showlinks(id){
 		}
 	});
 }
-
-String.prototype.contains = function(str) {
-	var value = 0;
-	for (var i = str.length - 1; i >= 0; i--) {
-		if(this.indexOf(str[i])>-1){
-			value++;
-		}
-	};
-	return value>str.length/2;
-};
