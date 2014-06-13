@@ -10,10 +10,11 @@
 	<div class="container">
 		<div class="login">
 			<div class="login-icon">
-				<img src="img/logo.png" alt="欢迎登录考试查询系统">
+				<div class="well">
+					<img src="img/register.jpg" alt="注册"></div>
 				<h4>
-					欢迎使用
-					<small>考试查询系统</small>
+					注册
+					<small>请填写注册信息</small>
 				</h4>
 			</div>
 			<div class="login-form">
@@ -28,9 +29,13 @@
 					<p>密码</p>
 					<![endif] -->
 					<input type="password" class="form-control" placeholder="密码" id="login-pass"></div>
+				<div class="control-group">
+					<!--[if lte IE 9]>
+					<p>确认密码</p>
+					<![endif] -->
+					<input type="password" class="form-control" placeholder="确认密码" id="login-pass-confirm"></div>
 
-				<button class="btn btn-primary btn-large btn-block" id="submit">登录</button>
-				<a class="login-link" href="">忘记密码？</a><a class="login-link" href="">注册</a>
+				<button class="btn btn-primary btn-large btn-block" id="submit">确认注册</button>
 			</div>
 		</div>
 	</div>
