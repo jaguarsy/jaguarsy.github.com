@@ -100,6 +100,7 @@
 		};
 		scv.x = i * 30 + 350;
 		scv.y = 360;
+		//scv.addEventListener('click',ChooseUnit);
 		stage.addChild(scv);
 		units.push({
 			name: "scv",
@@ -131,7 +132,6 @@
 		var x = event.stageX,
 			y = event.stageY;
 
-		Choose(x, y, x, y)
 		event.addEventListener("mousemove", function(e) {
 			stage.removeChild(temp)
 			temp = new createjs.Shape();
@@ -222,6 +222,13 @@
 			.setStrokeStyle(1)
 			.beginStroke("#00EE00")
 			.drawEllipse(x, y, width, height);
+	}
+
+	function ChooseUnit(event){
+		console.log(event);
+		var target = event.currentTarget;
+		drawChooseCircle(chooses[0], target.x, target.y,
+				1 * 30, 1 * 30);
 	}
 
 	function getTopTexture(i, j) {
