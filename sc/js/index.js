@@ -24,13 +24,14 @@
 			vBlock: 2,
 			left: 8
 		}, {
-			img: "image/build/0_hq_blue.gif",
+			img: "image/build/0_hq_red.gif",
 			width: 127,
 			height: 101,
 			hBlock: 2,
 			vBlock: 2,
 			left: 0
 		}],
+		units = [],
 		bWidth = 65,
 		bHeight = 32,
 		hCount = 15,
@@ -87,6 +88,29 @@
 		}
 	}
 
+	var scv;
+	//初始化scv
+	for (var i = 0; i < 6; i++) {
+		scv = new createjs.Bitmap("image/unit/0_scv_red.gif");
+		scv.sourceRect = {
+			x: 0,
+			y: 192,
+			width: 46,
+			height: 48
+		};
+		scv.x = i * 30 + 350;
+		scv.y = 360;
+		stage.addChild(scv);
+		units.push({
+			name: "scv",
+			obj: scv,
+			width: 30,
+			height: 30,
+			hBlock: 1,
+			vBlock: 1
+		});
+	}
+
 	stage.addEventListener("mousedown", MouseDown);
 	stage.addEventListener("stagemouseup", MouseUp);
 	stage.update();
@@ -128,11 +152,11 @@
 	}
 
 	//选择一个区域中的所有物体
-	function Choose(x1, y1, x2, y2) {
-		var x1 = Math.floor(x1 / bWidth),
-			y1 = Math.ceil(y1 / bHeight),
-			x2 = Math.floor(x2 / bWidth),
-			y2 = Math.ceil(y2 / bHeight),
+	function Choose(sx1, sy1, sx2, sy2) {
+		var x1 = Math.floor(sx1 / bWidth),
+			y1 = Math.ceil(sy1 / bHeight),
+			x2 = Math.floor(sx2 / bWidth),
+			y2 = Math.ceil(sy2 / bHeight),
 			tmp,
 			chooseCount = 0,
 			choose;
@@ -155,21 +179,49 @@
 			y2 = tmp;
 		}
 
+		for (var i = 0; i < units.length; i++) {
+			var unit = units[i];
+
+			if (!isInRect(unit.obj.x, unit.obj.y, unit.width,
+					unit.height, sx1, sy1, sx2, sy2)) continue;
+			if (chooseCount >= chooses.length) break;
+			choose = chooses[chooseCount++];
+
+			drawChooseCircle(choose, unit.obj.x + unit.width / 3, unit.obj.y + unit.height * 2 / 3,
+				unit.hBlock * unit.width, unit.vBlock * unit.height);
+
+			stage.update();
+		}
+
 		for (var i = x1; i <= x2; i++) {
 			for (var j = y1; j <= y2; j++) {
 				var t = texture[i][j];
 				if (t <= 0) continue;
 				if (chooseCount >= chooses.length) break;
 				choose = chooses[chooseCount++];
-				choose.graphics
-					.setStrokeStyle(1)
-					.beginStroke("#00EE00")
-					.drawEllipse(i * bWidth, j * bHeight - (res[t].vBlock + 1) * vCount,
-						res[t].hBlock * bWidth, res[t].vBlock * bHeight);
+				drawChooseCircle(choose, i * bWidth, j * bHeight - (res[t].vBlock + 1) * vCount,
+					res[t].hBlock * bWidth, res[t].vBlock * bHeight);
 
 				stage.update();
 			}
 		}
+	}
+
+	//碰撞检测
+	function isInRect(x, y, width, height, x1, y1, x2, y2) {
+		return (x >= x1 && x <= x2 || x >= x2 && x <= x1) &&
+			(y >= y1 && y <= y2 || y >= y2 && y <= y1) ||
+			(x < x1 && x + width > x1 && y < y1 && y + height > y1) ||
+			(x < x1 && x + width > x1 && y < y1 && y + height > y2) ||
+			(x < x1 && x + width > x2 && y < y1 && y + height > y1) ||
+			(x < x1 && x + width > x2 && y < y1 && y + height > y2);
+	}
+
+	function drawChooseCircle(shape, x, y, width, height) {
+		shape.graphics
+			.setStrokeStyle(1)
+			.beginStroke("#00EE00")
+			.drawEllipse(x, y, width, height);
 	}
 
 	function getTopTexture(i, j) {
