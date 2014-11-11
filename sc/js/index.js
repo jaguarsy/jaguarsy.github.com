@@ -1,36 +1,9 @@
-(function() {
+(function(Model) {
 	'use strict'
 
 	var stage = new createjs.Stage(id("game")),
-		res = [{
-			img: "image/bg1.gif",
-			width: 65,
-			height: 32,
-			hBlock: 1,
-			vBlock: 1,
-			left: 0
-		}, {
-			img: "image/block/mine.gif",
-			width: 41,
-			height: 46,
-			hBlock: 1,
-			vBlock: 1,
-			left: 10
-		}, {
-			img: "image/block/ves.gif",
-			width: 115,
-			height: 53,
-			hBlock: 2,
-			vBlock: 2,
-			left: 8
-		}, {
-			img: "image/build/0_hq_red.gif",
-			width: 127,
-			height: 101,
-			hBlock: 2,
-			vBlock: 2,
-			left: 0
-		}],
+		res = Model.res,
+		unit_res = Model.unit_res,
 		units = [],
 		bWidth = 65,
 		bHeight = 32,
@@ -81,7 +54,7 @@
 			if (texture[i][j] > 0) {
 				resource = res[texture[i][j]];
 				image = new createjs.Bitmap(resource.img);
-				image.x = i * bWidth + resource.left;
+				image.x = i * bWidth + resource.mgLeft;
 				image.y = j * bHeight - resource.height;
 				stage.addChild(image);
 			}
@@ -91,24 +64,16 @@
 	var scv;
 	//初始化scv
 	for (var i = 0; i < 6; i++) {
-		scv = new createjs.Bitmap("image/unit/0_scv_red.gif");
-		scv.sourceRect = {
-			x: 0,
-			y: 192,
-			width: 46,
-			height: 48
-		};
+		scv = new createjs.Bitmap(unit_res.scv.img);
+		scv.sourceRect = unit_res.scv.sourceRect.down;
 		scv.x = i * 30 + 350;
 		scv.y = 360;
-		//scv.addEventListener('click',ChooseUnit);
+		scv.addEventListener('click', ChooseUnit);
+		scv.res = unit_res.scv
 		stage.addChild(scv);
 		units.push({
-			name: "scv",
 			obj: scv,
-			width: 30,
-			height: 30,
-			hBlock: 1,
-			vBlock: 1
+			res: unit_res.scv
 		});
 	}
 
@@ -163,10 +128,7 @@
 
 		//console.log(x1 + "," + y1 + "," + x2 + "," + y2)
 
-		for (var i = chooses.length - 1; i >= 0; i--) {
-			if (chooses[i].graphics.clear)
-				chooses[i].graphics.clear();
-		}
+		clearChoose();
 
 		if (x1 > x2) {
 			tmp = x1;
@@ -182,26 +144,28 @@
 		for (var i = 0; i < units.length; i++) {
 			var unit = units[i];
 
-			if (!isInRect(unit.obj.x, unit.obj.y, unit.width,
-					unit.height, sx1, sy1, sx2, sy2)) continue;
+			if (!isInRect(unit.obj.x, unit.obj.y, unit.res.width,
+					unit.res.height, sx1, sy1, sx2, sy2)) continue;
 			if (chooseCount >= chooses.length) break;
 			choose = chooses[chooseCount++];
 
-			drawChooseCircle(choose, unit.obj.x + unit.width / 3, unit.obj.y + unit.height * 2 / 3,
-				unit.hBlock * unit.width, unit.vBlock * unit.height);
+			drawChooseCircle(choose, unit.obj.x + unit.res.chooseOffset.x, unit.obj.y + unit.res.chooseOffset.y,
+				unit.res.hBlock * unit.res.width, unit.res.vBlock * unit.res.height);
 
 			stage.update();
 		}
+		//如果选中了单位，则不选中建筑物
+		if (chooseCount > 0) return;
 
 		for (var i = x1; i <= x2; i++) {
 			for (var j = y1; j <= y2; j++) {
 				var t = texture[i][j];
 				if (t <= 0) continue;
 				if (chooseCount >= chooses.length) break;
+
 				choose = chooses[chooseCount++];
 				drawChooseCircle(choose, i * bWidth, j * bHeight - (res[t].vBlock + 1) * vCount,
 					res[t].hBlock * bWidth, res[t].vBlock * bHeight);
-
 				stage.update();
 			}
 		}
@@ -224,11 +188,18 @@
 			.drawEllipse(x, y, width, height);
 	}
 
-	function ChooseUnit(event){
-		console.log(event);
+	function ChooseUnit(event) {
+		clearChoose();
 		var target = event.currentTarget;
-		drawChooseCircle(chooses[0], target.x, target.y,
-				1 * 30, 1 * 30);
+		drawChooseCircle(chooses[0], target.x + target.res.chooseOffset.x, target.y + target.res.chooseOffset.y,
+			target.res.hBlock * target.res.width, target.res.vBlock * target.res.height);
+	}
+
+	function clearChoose() {
+		for (var i = chooses.length - 1; i >= 0; i--) {
+			if (chooses[i].graphics.clear)
+				chooses[i].graphics.clear();
+		}
 	}
 
 	function getTopTexture(i, j) {
@@ -238,4 +209,10 @@
 			}
 		}
 	}
-})()
+
+	document.oncontextmenu = function(event) {
+			console.log(event)
+
+			event.returnValue = false;
+		} //屏蔽鼠标右键 
+})(SC.Model)
