@@ -93,12 +93,18 @@ SC.Model = {
 				x: 0,
 				y: 0
 			},
+			canMove: true,
+			isMoving: false,
+			speed: 10,
+			moveTarget: {
+				x: 0,
+				y: 0
+			},
 			width: 30,
 			height: 25,
 			hBlock: 1,
 			vBlock: 1,
 			mgLeft: 0,
-			speed: 10,
 			chooseOffset: {
 				x: 10,
 				y: 20

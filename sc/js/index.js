@@ -11,6 +11,8 @@
 		vCount = 20,
 		texture = [],
 		chooses = [],
+		moveTarget,
+		movingList = [],
 		image,
 		temp;
 
@@ -149,6 +151,7 @@
 			if (chooseCount >= chooses.length) break;
 			choose = chooses[chooseCount++];
 
+			choose.unit = unit;
 			drawChooseCircle(choose, unit.obj.x + unit.res.chooseOffset.x, unit.obj.y + unit.res.chooseOffset.y,
 				unit.res.hBlock * unit.res.width, unit.res.vBlock * unit.res.height);
 
@@ -197,6 +200,7 @@
 
 	function clearChoose() {
 		for (var i = chooses.length - 1; i >= 0; i--) {
+			chooses[i].unit = undefined;
 			if (chooses[i].graphics.clear)
 				chooses[i].graphics.clear();
 		}
@@ -211,8 +215,30 @@
 	}
 
 	document.oncontextmenu = function(event) {
-			console.log(event)
+			moveTarget = {
+				x: event.offset.x,
+				y: event.offset.y
+			}
+			var unit;
+			if (chooses[0].unit.res.canMove) {
+				for (var i = 0; i < chooses.length; i++) {
+					unit = chooses[i].unit.res;
+					unit.isMoving = true;
+					unit.moveTarget = moveTarget;
+				}
+			}
 
 			event.returnValue = false;
 		} //屏蔽鼠标右键 
+
+	var moveUnit;
+	function unitMove() {
+		for (var i = 0; i < units.length; i++) {
+			moveUnit = units[i];
+			if (!moveUnit.res.isMoving || !moveUnit.res.canMove) continue;
+			if(moveUnit.res.moveTarget.x==moveUnit.obj.x && 
+			   moveUnit.res.moveTarget.y==moveUnit.obj.y) continue;
+			
+		}
+	}
 })(SC.Model)
