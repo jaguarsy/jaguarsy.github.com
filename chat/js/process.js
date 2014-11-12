@@ -142,10 +142,10 @@ function ini(){
 }
 
 function textencode(str) {
- 	str = str.replace(/&amp;/gi, '&');
- 	str = str.replace(/</g, '&lt;');
- 	str = str.replace(/>/g, '&gt;');
-	return str;
+	str = str | '';
+	return str.replace(/&amp;/gi, '&'),
+	 	  .replace(/</g, '&lt;'),
+	          .replace(/>/g, '&gt;');
 }
 
 function addToList(panel,id,name,photo){
