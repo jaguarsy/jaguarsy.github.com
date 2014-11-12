@@ -142,7 +142,7 @@ function ini(){
 }
 
 function textencode(str) {
-	str = str | '';
+	str = str || '';
 	return str.replace(/&amp;/gi, '&')
 	 	  .replace(/</g, '&lt;')
 	          .replace(/>/g, '&gt;');
