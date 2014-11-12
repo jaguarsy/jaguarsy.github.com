@@ -113,9 +113,16 @@ function ini(){
 			currentuser = value;
 	});
 
-	users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
-		+ currentuser.photo + '" height="50">' + currentuser.username + 
-		'</a>')
+	users.prepend($('<a>').attr('href','#')
+		              .addClass('list-group-item headphoto')
+		              .attr('data-toggle','modal')
+		              .attr('data-target','#settings')
+		              .text(currentuser.username)
+		              .prepend($('<img>').attr('src',currentuser.photo)
+		              			 .css('height','50')));
+	//users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
+	//	+ currentuser.photo + '" height="50">' + currentuser.username + 
+	//	'</a>')
 
 	$('#currentName').text(getCurrentName());
 	$('#messagepanel').hide();
