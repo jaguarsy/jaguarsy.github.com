@@ -117,8 +117,8 @@ function ini(){
 		              .addClass('list-group-item headphoto')
 		              .attr('data-toggle','modal')
 		              .attr('data-target','#settings')
-		              .text(currentuser.username)
-		              .prepend($('<img>').attr('src',currentuser.photo)
+		              .text(textencode(currentuser.username))
+		              .prepend($('<img>').attr('src',textencode(currentuser.photo))
 		              			 .css('height','50')));
 	//users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
 	//	+ currentuser.photo + '" height="50">' + currentuser.username + 
@@ -139,6 +139,13 @@ function ini(){
     		}
     	}
   	});
+}
+
+function textencode(str) {
+ 	str = str.replace(/&amp;/gi, '&');
+ 	str = str.replace(/</g, '&lt;');
+ 	str = str.replace(/>/g, '&gt;');
+	return str;
 }
 
 function addToList(panel,id,name,photo){
