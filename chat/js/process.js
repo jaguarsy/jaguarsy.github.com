@@ -150,8 +150,8 @@ function textencode(str) {
 
 function addToList(panel,id,name,photo){
 	panel.append('<a href="javascript:void(0)" class="list-group-item" onclick="talkToUser(\'' 
-		+ id + '\')"><span class="badge" id="user_' + name + '"></span>' + 
-		'<img src="'+ photo + '" height="30" width="30"/>' +
+		+ id + '\')"><span class="badge" id="user_' + textencode(name) + '"></span>' + 
+		'<img src="'+ textencode(photo) + '" height="30" width="30"/>' +
 		name + '</a>');
 }
 
