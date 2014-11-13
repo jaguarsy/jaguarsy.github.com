@@ -152,13 +152,14 @@ function deleteHtmlChar(str) {
 	str = str || '';
 	return str.replace(/&amp;/gi, '')
 	 	  .replace(/</g, '')
+	 	  .replace(/\//g, '')
 	          .replace(/>/g, '');
 }
 
 function addToList(panel,id,name,photo){
 	panel.append('<a href="javascript:void(0)" class="list-group-item" onclick="talkToUser(\'' 
-		+ id + '\')"><span class="badge" id="user_' + textencode(name) + '"></span>' + 
-		'<img src="'+ textencode(photo) + '" height="30" width="30"/>' +
+		+ id + '\')"><span class="badge" id="user_' + deleteHtmlChar(name) + '"></span>' + 
+		'<img src="'+ deleteHtmlChar(photo) + '" height="30" width="30"/>' +
 		textencode(name) + '</a>');
 }
 
