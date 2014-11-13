@@ -131,7 +131,7 @@ function ini(){
     	var message = snapshot.val();
     	if(message.hasread == '0'){
     		if(message.user != getCurrentName() && message.to == getCurrentName()){
-    			var obj = $('#user_'+textencode(message.user));
+    			var obj = $('#user_'+deleteHtmlChar(message.user));
     			var sum = 0;
     			if(obj.text()!='') sum = parseInt(obj.text());
     			sum++;
