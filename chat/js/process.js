@@ -153,6 +153,8 @@ function deleteHtmlChar(str) {
 	return str.replace(/&amp;/gi, '')
 	 	  .replace(/</g, '')
 	 	  .replace(/\//g, '')
+	 	  .replace(/\"/g, '')
+	 	  .replace(/\'/g, '')
 	          .replace(/>/g, '');
 }
 
