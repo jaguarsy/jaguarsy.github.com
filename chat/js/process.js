@@ -148,7 +148,7 @@ function textencode(str) {
 	          .replace(/>/g, '&gt;');
 }
 
-function srcProcess(src){
+function srcProcess(str){
 	str = str || '';
 	return str.replace(/&amp;/gi, '')
 	 	  .replace(/</g, '')
