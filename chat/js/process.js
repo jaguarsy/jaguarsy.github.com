@@ -118,7 +118,7 @@ function ini(){
 		              .attr('data-toggle','modal')
 		              .attr('data-target','#settings')
 		              .html(textencode(currentuser.username))
-		              .prepend($('<img>').attr('src',deleteHtmlChar(currentuser.photo))
+		              .prepend($('<img>').attr('src',srcProcess(currentuser.photo))
 		              			 .css('height','50')));
 	//users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
 	//	+ currentuser.photo + '" height="50">' + currentuser.username + 
@@ -148,6 +148,15 @@ function textencode(str) {
 	          .replace(/>/g, '&gt;');
 }
 
+function srcProcess(){
+	str = str || '';
+	return str.replace(/&amp;/gi, '')
+	 	  .replace(/</g, '')
+	 	  .replace(/\"/g, '')
+	 	  .replace(/\'/g, '')
+	          .replace(/>/g, '');
+}
+
 function deleteHtmlChar(str) {
 	str = str || '';
 	return str.replace(/&amp;/gi, '')
@@ -161,7 +170,7 @@ function deleteHtmlChar(str) {
 function addToList(panel,id,name,photo){
 	panel.append('<a href="javascript:void(0)" class="list-group-item" onclick="talkToUser(\'' 
 		+ id + '\')"><span class="badge" id="user_' + deleteHtmlChar(name) + '"></span>' + 
-		'<img src="'+ deleteHtmlChar(photo) + '" height="30" width="30"/>' +
+		'<img src="'+ srcProcess(photo) + '" height="30" width="30"/>' +
 		textencode(name) + '</a>');
 }
 
