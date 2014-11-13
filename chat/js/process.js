@@ -113,9 +113,16 @@ function ini(){
 			currentuser = value;
 	});
 
-	users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
-		+ currentuser.photo + '" height="50">' + currentuser.username + 
-		'</a>')
+	users.prepend($('<a>').attr('href','#')
+		              .addClass('list-group-item headphoto')
+		              .attr('data-toggle','modal')
+		              .attr('data-target','#settings')
+		              .text(textencode(currentuser.username))
+		              .prepend($('<img>').attr('src',textencode(currentuser.photo))
+		              			 .css('height','50')));
+	//users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
+	//	+ currentuser.photo + '" height="50">' + currentuser.username + 
+	//	'</a>')
 
 	$('#currentName').text(getCurrentName());
 	$('#messagepanel').hide();
@@ -134,11 +141,18 @@ function ini(){
   	});
 }
 
+function textencode(str) {
+	str = str || '';
+	return str.replace(/&amp;/gi, '&')
+	 	  .replace(/</g, '&lt;')
+	          .replace(/>/g, '&gt;');
+}
+
 function addToList(panel,id,name,photo){
 	panel.append('<a href="javascript:void(0)" class="list-group-item" onclick="talkToUser(\'' 
-		+ id + '\')"><span class="badge" id="user_' + name + '"></span>' + 
-		'<img src="'+ photo + '" height="30" width="30"/>' +
-		name + '</a>');
+		+ id + '\')"><span class="badge" id="user_' + textencode(name) + '"></span>' + 
+		'<img src="'+ textencode(photo) + '" height="30" width="30"/>' +
+		textencode(name) + '</a>');
 }
 
 function getCurrentName(){
