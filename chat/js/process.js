@@ -117,7 +117,7 @@ function ini(){
 		              .addClass('list-group-item headphoto')
 		              .attr('data-toggle','modal')
 		              .attr('data-target','#settings')
-		              .text(textencode(currentuser.username))
+		              .html(textencode(currentuser.username))
 		              .prepend($('<img>').attr('src',textencode(currentuser.photo))
 		              			 .css('height','50')));
 	//users.prepend('<a href="#" class="list-group-item headphoto" data-toggle="modal" data-target="#settings"><img src="' 
