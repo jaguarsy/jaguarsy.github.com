@@ -148,6 +148,13 @@ function textencode(str) {
 	          .replace(/>/g, '&gt;');
 }
 
+function deleteHtmlChar(str) {
+	str = str || '';
+	return str.replace(/&amp;/gi, '')
+	 	  .replace(/</g, '')
+	          .replace(/>/g, '');
+}
+
 function addToList(panel,id,name,photo){
 	panel.append('<a href="javascript:void(0)" class="list-group-item" onclick="talkToUser(\'' 
 		+ id + '\')"><span class="badge" id="user_' + textencode(name) + '"></span>' + 
