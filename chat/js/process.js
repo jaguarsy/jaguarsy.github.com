@@ -207,7 +207,7 @@ function talkToUser(id){
     	else{
     		if(message.hasread == '0'){
     			if(message.user != getCurrentName() && message.to == getCurrentName()){
-    				var obj = $('#user_'+message.user);
+    				var obj = $('#user_'+deleteHtmlChar(message.user));
     				var sum = 0;
     				if(obj.text()!='') sum = parseInt(obj.text());
     				sum++;
@@ -234,7 +234,7 @@ function talkToUser(id){
 
 function updateUnReadMsg(talkToName){
 	//更新未查看消息
-	$('#user_'+talkToName).empty();
+	$('#user_'+deleteHtmlChar(talkToName)).empty();
 
 	messagesRef.once('value', function(snapshot){
 		var list = snapshot.val();
