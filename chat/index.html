@@ -48,6 +48,13 @@
             </a>
           </div>
           <div class="list-group" id="userspanel"></div>
+          <div class="panel-footer">
+            当前登录用户： <strong id="currentName"></strong>
+            ，
+            <span>
+              <a href="#" onclick="logout()">[注销]</a>
+            </span>
+          </div>
         </div>
       </div>
       <div class="mainpanel col-xs-9 col-md-9">
@@ -72,13 +79,6 @@
               <textarea class="form-control" rows="3" id="messageInput"></textarea>
               <button type="submit" class="btn btn-primary pull-right" onclick="sendMessage()">发送</button>
             </div>
-          </div>
-          <div class="panel-footer">
-            当前登录用户： <strong id="currentName"></strong>
-            ，
-            <span>
-              <a href="#" onclick="logout()">[注销]</a>
-            </span>
           </div>
         </div>
       </div>
