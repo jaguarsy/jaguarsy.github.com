@@ -20,7 +20,9 @@
 }
 
 @media screen and (max-width: 700px) { 
-	.userslist{ width: 100%; display: block;} 
-	.mainpanel{ width: 100%; display: none; }
-	#messagesDiv{height: 200px}
+	.userslist{ width: 100%; display: block; padding: 5px;} 
+	.mainpanel{ width: 100%; display: none; padding: 5px;}
+	#messagesDiv{ height: 200px;}
+	.container{ padding: 0;}
+	#chat{ margin-top: 5px;}
 }
