@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/index.css"></head>
+<body>
+	<div ng-controller="testController">
+
+		<div id="loading" ng-hide="loaded">
+			<div class="spinner">
+				<div class="spinner-container container1">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="spinner-container container2">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="spinner-container container3">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+			</div>
+		</div>
+		<div class="panel" sytle="display:none" ng-show="loaded">
+			<ul>
+				<li ng-repeat="item in list" ng-bind="item.value"></li>
+			</ul>
+			<input type="text" ng-model="inputValue"/>
+			<input type="button" ng-click="submit()" value="Submit"/>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/firebase.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
