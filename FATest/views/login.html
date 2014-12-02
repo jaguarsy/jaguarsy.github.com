@@ -1,0 +1,23 @@
+<div class="login-panel" ng-controller="loginController">
+	<h3>Cage Chat Room</h3>
+	<hr/>
+	<form role="form">
+		<div class="form-group">
+			<label for="Email">Email address</label>
+			<input type="email" ng-model="email" class="form-control" id="Email"
+							placeholder="Enter email"></div>
+		<div class="form-group">
+			<label for="Password">Password</label>
+			<input type="password" ng-model="password" class="form-control" id="Password" 
+							placeholder="Password"></div>
+		<div class="form-group" ng-class="{'has-error':hasError}" ng-show="isRegister">
+			<label for="Confirm">Confirm Password</label>
+			<input type="password" ng-model="confirm" ng-style="psStyle" class="form-control" id="Confirm" 
+							placeholder="Confirm Password"></div>
+		<button type="submit" class="btn btn-primary" ng-click="signIn()">SignIn</button>
+		<span>or</span>
+		<a href="javascript:void(0)" ng-click="isRegister=!isRegister;btText=isRegister?'Cancel':'Register'" 
+						ng-init="isRegister=false;btText='Register'" 
+						ng-bind="btText"></a>
+	</form>
+</div>

@@ -2,43 +2,69 @@
 <html ng-app="testApp">
 <head>
 	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css"></head>
 <body>
-	<div ng-controller="testController">
+	<div>
 
-		<div id="loading" ng-hide="loaded">
-			<div class="spinner">
-				<div class="spinner-container container1">
-					<div class="circle1"></div>
-					<div class="circle2"></div>
-					<div class="circle3"></div>
-					<div class="circle4"></div>
-				</div>
-				<div class="spinner-container container2">
-					<div class="circle1"></div>
-					<div class="circle2"></div>
-					<div class="circle3"></div>
-					<div class="circle4"></div>
-				</div>
-				<div class="spinner-container container3">
-					<div class="circle1"></div>
-					<div class="circle2"></div>
-					<div class="circle3"></div>
-					<div class="circle4"></div>
-				</div>
+		<!-- 		<div id="loading" ng-show="loading">
+		<div class="spinner">
+			<div class="spinner-container container1">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+			<div class="spinner-container container2">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+			<div class="spinner-container container3">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
 			</div>
 		</div>
-		<div class="panel" sytle="display:none" ng-show="loaded">
-			<ul>
-				<li ng-repeat="item in list" ng-bind="item.value"></li>
-			</ul>
-			<input type="text" ng-model="inputValue"/>
-			<input type="button" ng-click="submit()" value="Submit"/>
-		</div>
 	</div>
+	-->
+	<div class="container" ng-view>
+<!-- 		<div class="login-panel" ng-hide="authorized">
+			<h3>Cage Chat Room</h3>
+			<hr/>
+			<form role="form">
+				<div class="form-group">
+					<label for="Email">Email address</label>
+					<input type="email" ng-model="email" class="form-control" id="Email"
+							placeholder="Enter email"></div>
+				<div class="form-group">
+					<label for="Password">Password</label>
+					<input type="password" ng-model="password" class="form-control" id="Password" 
+							placeholder="Password"></div>
+				<div class="form-group" ng-class="{'has-error':hasError}" ng-show="isRegister">
+					<label for="Confirm">Confirm Password</label>
+					<input type="password" ng-model="confirm" ng-style="psStyle" class="form-control" id="Confirm" 
+							placeholder="Confirm Password"></div>
+				<button type="submit" class="btn btn-primary" ng-click="signIn()">SignIn</button>
+				<span>or</span>
+				<a href="javascript:void(0)" ng-click="isRegister=!isRegister;btText=isRegister?'Cancel':'Register'" 
+						ng-init="isRegister=false;btText='Register'" 
+						ng-bind="btText"></a>
+			</form>
+		</div> -->
+<!-- 		<div class="main-panel" ng-show="authorized" ng-controller="chatController">
+			<p ng-bind="name"></p>
+			<a href="javascript:void(0)" ng-click="signOut()">[Sign Out]</a>
+		</div> -->
+	</div>
+</div>
 
-	<script type="text/javascript" src="js/angular.min.js"></script>
-	<script type="text/javascript" src="js/firebase.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+<script type="text/javascript" src="js/firebase.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
