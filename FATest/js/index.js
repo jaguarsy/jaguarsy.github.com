@@ -12,6 +12,10 @@ testApp.config(['$routeProvider', function($routeProvider) {
 			controller: 'chatController',
 			templateUrl: 'views/chat.html'
 		})
+		.when('/detail', {
+			controller: 'detailController',
+			templateUrl: 'views/detail.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
@@ -19,16 +23,44 @@ testApp.config(['$routeProvider', function($routeProvider) {
 
 testApp.service('dbService', function() {
 	var dbContext = new Firebase("bitcage.firebaseio.com");
+	var current = {
+		uid: '',
+		detail: {
+			email: '',
+			nickName: ''
+		}
+	}
 
 	this.getDB = function() {
 		return dbContext;
+	}
+
+	this.getCurrent = function() {
+		return current;
+	}
+
+	this.signIn = function(user) {
+		current = user;
+	}
+
+	this.addUser = function(uid, name) {
+		this.signIn({
+			uid: uid,
+			detail: {
+				email: email,
+				nickName: ''
+			}
+		})
+		db.child('users/' + current.uid).set(current.detail);
 	}
 });
 
 testApp.controller('loginController', ['$scope', '$location', 'dbService',
 		function($scope, $location, dbService) {
 
-			var db = dbService.getDB();
+			var db = dbService.getDB(),
+				usersRef = db.child('users'),
+				userRef;
 
 			if (db.getAuth()) {
 				$location.path('/chat')
@@ -47,9 +79,16 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 					if (error) {
 						alert("Login Failed!", error);
 					} else {
-						$scope.$apply(function() {
-							$location.path('/chat');
-						});
+						if ($scope.isRegister) {
+							//dbService.addUser(authData.uid, authData.password.email)
+							$scope.$apply(function() {
+								$location.path('/detail');
+							});
+						} else {
+							$scope.$apply(function() {
+								$location.path('/chat');
+							});
+						}
 					}
 				});
 			}
@@ -96,6 +135,15 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 
 			$scope.signOut = function() {
 				db.unauth();
+				$location.path('/')
+			}
+		}
+	])
+	.controller('detailController', ['$scope', '$location', 'dbService',
+		function($scope, $location, dbService) {
+			var db = dbService.getDB();
+
+			if (!db.getAuth()) {
 				$location.path('/')
 			}
 		}
