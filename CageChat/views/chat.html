@@ -1,0 +1,56 @@
+<div class="container" ng-controller="chatController">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-user"></span>
+					Users
+					<a href="#" class="pull-right" title="设置" data-toggle="modal" data-target="#settings">
+						<span class="glyphicon glyphicon-cog"></span>
+					</a>
+				</div>
+				<div class="list-group users-panel">
+					<a href="#" class="list-group-item" ng-bind="nickName"></a>
+					<a href="#" class="list-group-item" ng-repeat="user in userlist" ng-bind='user'></a>
+				</div>
+				<div class="panel-footer">
+					Current user： <strong ng-bind="nickName"></strong>
+					,
+					<span>
+						<a href="javascript:void(0)" ng-click="signOut()">[Sign Out]</a>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-list-alt"></span>
+					主面板
+				</div>
+				<div class="panel-body">
+					<p class="text-muted">
+						选择一名好友聊天吧！
+						<a href="#" style="display:none">[换个好友]</a>
+					</p>
+					<div id="messagepanel" style="display: block;">
+						<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							与[
+							<span ng-bind="talkto"></span>
+							]聊天中
+						</p>
+						<div class="middle">
+							<div><strong></strong>
+								imba
+							</div>
+							<small class="text-muted">2014/11/14 12:21:47</small>
+						</div>
+						<textarea class="form-control" rows="3" id="messageInput"></textarea>
+						<button type="submit" class="btn btn-primary pull-right" onclick="sendMessage()">发送</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

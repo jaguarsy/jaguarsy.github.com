@@ -3,12 +3,12 @@
 		<div class="panel-body">
 			<h3>Set Details</h3>
 			<hr/>
-			<form role="form">
+			<form role="form" ng-submit="submit()">
 				<div class="form-group">
 					<label for="nickName">Nick Name</label>
 					<input type="text" ng-model="nickName" class="form-control" id="nickName"
 							placeholder="Enter a Nickname"></div>
-				<button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 	</div>

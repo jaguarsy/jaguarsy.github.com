@@ -135,3 +135,7 @@
   margin: 0 auto;
   margin-top: 50px;
 }
+
+.users-panel a:first-child{
+  font-weight: bold;
+}
