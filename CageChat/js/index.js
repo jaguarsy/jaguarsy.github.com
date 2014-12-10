@@ -172,6 +172,7 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 			var db = dbService.getDB(),
 				userRef = db.child('users'),
 				current = dbService.getCurrent();
+				
 			$scope.userlist = [];
 			$scope.nickName = current.detail.nickName;
 
