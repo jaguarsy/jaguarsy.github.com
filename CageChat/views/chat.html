@@ -1,4 +1,4 @@
-<div class="container" ng-controller="chatController">
+<div ng-controller="chatController">
 	<div class="row">
 		<div class="col-md-3">
 			<div class="panel panel-info">
@@ -14,8 +14,6 @@
 					<a href="#" class="list-group-item" ng-repeat="user in userlist" ng-bind='user'></a>
 				</div>
 				<div class="panel-footer">
-					Current user： <strong ng-bind="nickName"></strong>
-					,
 					<span>
 						<a href="javascript:void(0)" ng-click="signOut()">[Sign Out]</a>
 					</span>
@@ -33,21 +31,22 @@
 						选择一名好友聊天吧！
 						<a href="#" style="display:none">[换个好友]</a>
 					</p>
-					<div id="messagepanel" style="display: block;">
+					<div style="display: block;">
 						<p>
 							<span class="glyphicon glyphicon-comment"></span>
 							与[
-							<span ng-bind="talkto"></span>
+							<span ng-bind="talkto" ng-init="talkto='所有人'"></span>
 							]聊天中
 						</p>
-						<div class="middle">
-							<div><strong></strong>
-								imba
+						<div class="message-panel">
+							<div ng-repeat-start="message in messagelist">
+								<strong ng-bind-template="{{message.from}}:"></strong>
+								<span ng-bind="message.content"></span>
 							</div>
-							<small class="text-muted">2014/11/14 12:21:47</small>
+							<small class="text-muted" ng-bind="message.time| date:'yyyy-MM-dd HH:mm:ss'" ng-repeat-end></small>
 						</div>
-						<textarea class="form-control" rows="3" id="messageInput"></textarea>
-						<button type="submit" class="btn btn-primary pull-right" onclick="sendMessage()">发送</button>
+						<textarea class="form-control message-input" rows="3" ng-model="content"></textarea>
+						<button type="submit" class="btn btn-primary pull-right" ng-click="sendMessage()">发送</button>
 					</div>
 				</div>
 			</div>

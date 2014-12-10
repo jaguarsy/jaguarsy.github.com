@@ -139,3 +139,15 @@
 .users-panel a:first-child{
   font-weight: bold;
 }
+
+.message-panel{
+  padding: 5px 10px 0 10px;
+  width: 100%;
+  border: 1px solid #DDDDDD;
+  height: 400px;
+  overflow: scroll;
+}
+
+.message-input{
+  margin: 5px 0 5px 0;
+}

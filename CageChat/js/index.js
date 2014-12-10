@@ -165,15 +165,15 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 			}
 		}
 	])
-	.controller('chatController', ['$scope', '$location', 'dbService',
+	.controller('chatController', ['$scope', '$location', 'dbService', '$timeout',
 
-		function($scope, $location, dbService) {
+		function($scope, $location, dbService, $timeout) {
 
 			var db = dbService.getDB(),
 				userRef = db.child('users'),
+				messageRef = db.child('message'),
 				current = dbService.getCurrent();
-				
-			$scope.userlist = [];
+
 			$scope.nickName = current.detail.nickName;
 
 			if (!db.getAuth()) {
@@ -181,9 +181,10 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 			}
 
 			userRef.on('value', function(shot) {
+				$scope.userlist = [];
 				var list = shot.val();
 				angular.forEach(list, function(value, key) {
-					if(key==current.uid) return;
+					if (key == current.uid) return;
 					$scope.$apply(function() {
 						$scope.userlist.push(value.nickName);
 					})
@@ -191,9 +192,25 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 
 			})
 
+			messageRef.on('value', function(shot) {
+				$scope.$apply(function() {
+					$scope.messagelist = shot.val()
+				})
+			})
+
 			$scope.signOut = function() {
 				dbService.signOut();
 				$location.path('/')
+			}
+
+			$scope.sendMessage = function() {
+				messageRef.push({
+					talkto: '',
+					content: $scope.content,
+					from: current.detail.nickName,
+					time: Date.parse(new Date()),
+					readed: true
+				})
 			}
 		}
 	])
