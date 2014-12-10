@@ -193,9 +193,9 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 			})
 
 			messageRef.on('value', function(shot) {
-				$scope.$apply(function() {
+				$timeout(function() {
 					$scope.messagelist = shot.val()
-				})
+				}, 0)
 			})
 
 			$scope.signOut = function() {
