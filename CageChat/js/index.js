@@ -165,14 +165,15 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 			}
 		}
 	])
-	.controller('chatController', ['$scope', '$location', 'dbService', '$timeout',
+	.controller('chatController', ['$scope', '$location', 'dbService', '$timeout', '$anchorScroll',
 
-		function($scope, $location, dbService, $timeout) {
+		function($scope, $location, dbService, $timeout, $anchorScroll) {
 
 			var db = dbService.getDB(),
 				userRef = db.child('users'),
 				messageRef = db.child('message'),
-				current = dbService.getCurrent();
+				current = dbService.getCurrent(),
+				oldhash;
 
 			$scope.nickName = current.detail.nickName;
 
@@ -203,7 +204,9 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 				$location.path('/')
 			}
 
-			$scope.sendMessage = function() {
+			$scope.sendMessage = function($event) {
+				if ($event) $event.preventDefault()
+				if (!$scope.content) return;
 				messageRef.push({
 					talkto: '',
 					content: $scope.content,
@@ -212,6 +215,10 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 					readed: true
 				})
 				$scope.content = '';
+				oldhash = $location.hash();
+				$location.hash('bottom');
+				$anchorScroll();
+				$location.hash(oldhash);
 			}
 		}
 	])

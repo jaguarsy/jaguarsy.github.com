@@ -5,7 +5,7 @@
 				<div class="panel-heading">
 					<span class="glyphicon glyphicon-user"></span>
 					Users
-					<a href="./detail" class="pull-right" title="设置">
+					<a href="/detail" class="pull-right" title="设置">
 						<span class="glyphicon glyphicon-cog"></span>
 					</a>
 				</div>
@@ -39,13 +39,13 @@
 							]聊天中
 						</p>
 						<div class="message-panel">
-							<div ng-repeat-start="message in messagelist">
-								<strong ng-bind-template="{{message.from}}:"></strong>
+							<div ng-repeat-start="message in messagelist"> <strong ng-bind-template="{{message.from}}:"></strong>
 								<span ng-bind="message.content"></span>
 							</div>
 							<small class="text-muted" ng-bind="message.time| date:'yyyy-MM-dd HH:mm:ss'" ng-repeat-end></small>
+							<div id="bottom"></div>
 						</div>
-						<textarea class="form-control message-input" rows="3" ng-model="content"></textarea>
+						<textarea class="form-control message-input" rows="3" ng-keydown="$event.keyCode == 13 && sendMessage($event)" ng-model="content"></textarea>
 						<button type="submit" class="btn btn-primary pull-right" ng-click="sendMessage()">发送</button>
 					</div>
 				</div>
