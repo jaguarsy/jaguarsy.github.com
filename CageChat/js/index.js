@@ -74,8 +74,8 @@ testApp.factory('dbService', ['$cookies', function($cookies) {
 	}
 }]);
 
-testApp.controller('loginController', ['$scope', '$location', 'dbService',
-		function($scope, $location, dbService) {
+testApp.controller('loginController', ['$scope', '$location', 'dbService', '$timeout',
+		function($scope, $location, dbService, $timeout) {
 
 			var db = dbService.getDB(),
 				usersRef = db.child('users'),
@@ -106,13 +106,13 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 						} else {
 							usersRef.child(authData.uid).on('value', function(shot) {
 
-								$scope.$apply(function() {
+								$timeout(function() {
 									dbService.signIn({
 										uid: authData.uid,
 										detail: shot.val()
 									})
 									$location.path('/chat');
-								});
+								}, 0)
 							});
 						}
 					}
@@ -186,9 +186,9 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 				var list = shot.val();
 				angular.forEach(list, function(value, key) {
 					if (key == current.uid) return;
-					$scope.$apply(function() {
+					$timeout(function() {
 						$scope.userlist.push(value.nickName);
-					})
+					}, 0)
 				});
 
 			})
