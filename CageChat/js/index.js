@@ -70,6 +70,30 @@ testApp.factory('dbService', ['$cookies', function($cookies) {
 			current.detail.nickName = name;
 			dbContext.child('users/' + current.uid).set(current.detail);
 			this.signIn(current);
+		},
+
+		changepassowrd: function(oldpassword, newpassowrd, callback) {
+			dbContext.changePassword({
+				email: $cookies.email,
+				oldPassword: oldpassword,
+				newPassword: newpassowrd
+			}, function(error) {
+				if (error) {
+					switch (error.code) {
+						case "INVALID_PASSWORD":
+							alert("The specified user account password is incorrect.");
+							break;
+						case "INVALID_USER":
+							alert("The specified user account does not exist.");
+							break;
+						default:
+							alert("Error creating user:", error);
+					}
+				} else {
+					alert("User password changed successfully!");
+					if (callback) callback();
+				}
+			});
 		}
 	}
 }]);
@@ -95,6 +119,7 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService', '$tim
 					"email": email,
 					"password": password
 				}, function(error, authData) {
+					console.log(authData)
 					if (error) {
 						alert("Login Failed!", error);
 					} else {
@@ -162,6 +187,15 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService', '$tim
 			$scope.submit = function() {
 				dbService.rename($scope.nickName)
 				$location.path('/chat');
+			}
+
+			$scope.changepassowrd = function() {
+				dbService.changepassowrd($scope.oldpassword, $scope.newpassword,
+					function() {
+						$scope.$apply(function() {
+							$location.path('/')
+						})
+					});
 			}
 		}
 	])
