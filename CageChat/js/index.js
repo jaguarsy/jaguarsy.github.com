@@ -211,6 +211,7 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService',
 					time: Date.parse(new Date()),
 					readed: true
 				})
+				$scope.content = '';
 			}
 		}
 	])
