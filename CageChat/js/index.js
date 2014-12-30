@@ -119,7 +119,7 @@ testApp.controller('loginController', ['$scope', '$location', 'dbService', '$tim
 					"email": email,
 					"password": password
 				}, function(error, authData) {
-					console.log(authData)
+
 					if (error) {
 						alert("Login Failed!", error);
 					} else {
