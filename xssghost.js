@@ -306,3 +306,22 @@ var XssGhost = function() {
         init: init
     };
 }();
+
+// test
+XssGhost.init({
+    id: 'demo',
+    payload: function() {
+        function show() {
+            var div = document.createElement('div');
+            div.innerHTML = 'xss running...';
+            div.style.cssText = 'position:fixed; top:0; right:0; color:red; background:#000; font-size:40px; line-height:40px; z-index:999999';            
+            document.body.appendChild(div);
+        }
+
+        if (document.body) {
+            show();
+        } else {
+            window.addEventListener('DOMContentLoaded', show);
+        }
+    }
+});
