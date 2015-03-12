@@ -42,7 +42,7 @@
 							<div ng-repeat-start="message in messagelist"> <strong ng-bind-template="{{message.from}}:"></strong>
 								<span ng-bind="message.content"></span>
 							</div>
-							<small class="text-muted" ng-bind="message.time| date:'yyyy-MM-dd HH:mm:ss'" ng-repeat-end></small>
+							<small class="text-muted" ng-bind="message.time | date:'yyyy-MM-dd HH:mm:ss'" ng-repeat-end></small>
 							<div id="bottom"></div>
 						</div>
 						<textarea class="form-control message-input" rows="3" ng-keydown="$event.keyCode == 13 && sendMessage($event)" ng-model="content"></textarea>
