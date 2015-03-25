@@ -20,6 +20,7 @@ $(function() {
 	var pieces = $('#piece-panel .item');
 
 	var move = function(piece, index) {
+		piece = piece instanceof jQuery ? piece : $(piece);
 		piece.removeClass('prepare-' + index);
 		piece.addClass('active-' + index);
 		piece.attr('data-value', index);
@@ -28,7 +29,8 @@ $(function() {
 	var isWin = function() {}
 
 	var compute = function() {
-		score(pieces);
+		var result = score(pieces);
+		move(pieces[result.place], 2);
 	}
 
 	pieces.hover(function() {

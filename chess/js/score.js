@@ -18,28 +18,94 @@ var scorebase = [
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 
-//死二，死三，死四  	 0
-//大跳活二				 1
-//跳活二，眠二			 2
-//连活二，眠三			 3
-//跳活三，冲四			 4
-//连活三 				 5
-//活四，双四，双三，四三 100
+//死二，死三，死四  	 0    	liveLevel=2
+//大跳活二				     
+//跳活二，眠二			 2    	sum==2 && blankCount==1 && liveLevel==0 ||sum==2 && blankCount==0 && liveLevel=1
+//连活二，眠三			 3		sum==2 && blankCount==0 && liveLevel==0 ||sum==3 && blankCount==0 && liveLevel=1
+//跳活三，冲四，连活三	 4		sum==3 && blankCount==1 && liveLevel==0 ||sum==4 && blankCount==0 && liveLevel=1 || sum==3 && blankCount==0 && liveLevel==0	
+//活四，双四，双三，四三 100    sum==4 && blankCount==0 && liveLevel==0
 //成五 					 1000
-var level = [0, 1, 2, 3, 4, 5, 100, 1000],
-	direction = [-1, -16, -15, -14, 1, 16, 15, 14] //左，左上，上，右上，右，右下，下，左下
+var level = [0, 1, 9, 10, 11, 1000, 10000],
+	directions = [1, 16, 15, 14] //右，右下，下，左下， 不检测：左，左上，上，右上
 
-var getlength = function(array, start, direction) {
-	var sum = 0;
-	for (var i = 0; i < 15; i++) {}
+var getBestInOneDirection = function(array, start, role, direction) {
+	var sum = 0,
+		index,
+		item,
+		blankCount = 0,
+		blankTmp = 0,
+		liveLevel = 0; //存活等级，两头对方棋子的数量：0 or 1 or 2，包括边界
+
+	index = start - direction; //先检查前一颗子
+	if (index < 0 || index > 0 && array[index] == 3 - role) { //撞墙了或者撞别人了
+		liveLevel = 1;
+	}
+
+	for (var i = 0; i < 15; i++) {
+		index = start + i * direction;
+		item = array[index];
+
+		//第一个就是空格或超出边界或空一格以上立即返回
+		if (i == 0 && item == 0 || item == undefined || blankTmp > 1) {
+			//f (array[index - 2 * direction] == 0) blankCount -= 2;
+			return {
+				start: start,
+				sum: sum,
+				blankCount: blankCount,
+				liveLevel: liveLevel
+			};
+		}
+
+		if (item == 0) { //统计空格
+			blankTmp++;
+			continue;
+		}
+		if (item == role) {
+			if (blankTmp != 0) {
+				blankCount++;
+				blankTmp = 0;
+			}
+			sum++; //统计当前棋子数
+		}
+		if (item != role) { //检测到对方棋子
+			liveLevel++;
+			return {
+				start: start,
+				sum: sum,
+				blankCount: blankCount,
+				liveLevel: liveLevel
+			};
+		}
+	}
+}
+
+var getLevel = function(obj) {
+	if (obj.liveLevel == 2) return 0;
+	if (obj.sum == 1) return 1;
+	if (obj.sum == 2) return obj.sum - obj.blankCount - obj.liveLevel + 1;
+	return obj.sum - obj.liveLevel + 1;
+}
+
+var compare = function(target, sourcelvl) {
+	var level = getLevel(target);
+	if (level > sourcelvl) {
+		return level;
+	}
+	return sourcelvl;
 }
 
 //获取当前级别最高的排列
-var getBest = function(array) {
-	var best = 0;
+var getBest = function(array, role) {
+	var best = 0,
+		tmp;
 	for (var i = 0; i < 225; i++) {
-
+		for (var j = 0; j < 4; j++) {
+			tmp = getBestInOneDirection(array, i, role, directions[j]);
+			best = compare(tmp, best);
+		}
 	}
+
+	return level[best];
 }
 
 var toArray = function(objs) {
@@ -51,7 +117,29 @@ var toArray = function(objs) {
 	return array;
 }
 
+var put = function(array, role) {
+	var bestPlace,
+		bestScore = 0,
+		tmp
+
+	for (var i = 0; i < 225; i++) {
+		if (array[i] != 0) continue;
+		array[i] = role;
+		tmp = getBest(array, role) + scorebase[i];
+		if (tmp > bestScore) {
+			bestScore = tmp;
+			bestPlace = i;
+		}
+		array[i] = 0;
+	}
+
+	return {
+		nextScore: bestScore,
+		place: bestPlace
+	};
+}
+
 var score = function(pieces) {
 	var array = toArray(pieces);
-	getBest(array);
+	return put(array, 2);
 }
