@@ -30,7 +30,6 @@ $(function() {
 
 	var compute = function() {
 		var result = score(pieces);
-		console.log(result)
 		move(pieces[result.place], 2);
 	}
 
