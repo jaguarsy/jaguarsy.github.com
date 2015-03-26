@@ -25,7 +25,7 @@ var scorebase = [
 //跳活三，冲四，连活三	 4		sum==3 && blankCount==1 && liveLevel==0 ||sum==4 && blankCount==0 && liveLevel=1 || sum==3 && blankCount==0 && liveLevel==0	
 //活四，双四，双三，四三 100    sum==4 && blankCount==0 && liveLevel==0
 //成五 					 1000
-var level = [0, 1, 9, 10, 11, 1000, 10000],
+var level = [0, 1, 10, 11, 12, 1000, 10000],
 	directions = [1, 16, 15, 14] //右，右下，下，左下， 不检测：左，左上，上，右上
 
 var getBestInOneDirection = function(array, start, role, direction) {
@@ -117,19 +117,47 @@ var toArray = function(objs) {
 	return array;
 }
 
-var put = function(array, role) {
+function putNext(array, role) {
 	var bestPlace,
 		bestScore = 0,
-		tmp
+		tmp;
 
 	for (var i = 0; i < 225; i++) {
 		if (array[i] != 0) continue;
 		array[i] = role;
 		tmp = getBest(array, role) + scorebase[i];
+		//当前步的最佳估值减去下一步对方的最佳估值即当前步的估值
 		if (tmp > bestScore) {
 			bestScore = tmp;
 			bestPlace = i;
 		}
+
+		array[i] = 0;
+	}
+
+	return {
+		nextScore: bestScore,
+		place: bestPlace
+	};
+}
+
+function put(array, role) {
+	var bestPlace,
+		bestScore = -100,
+		tmp,
+		tmpNext;
+
+	for (var i = 0; i < 225; i++) {
+		if (array[i] != 0) continue;
+		array[i] = role;
+		tmp = getBest(array, role) + scorebase[i];
+		tmpNext = putNext(array, 3 - role);
+		//当前步的最佳估值减去下一步对方的最佳估值即当前步的估值
+		if (tmp - tmpNext.nextScore > bestScore) {
+			bestScore = tmp - tmpNext.nextScore;
+			bestPlace = i;
+		}
+
 		array[i] = 0;
 	}
 
