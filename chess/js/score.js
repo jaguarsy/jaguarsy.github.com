@@ -136,7 +136,7 @@ function putNext(array, role) {
 	}
 
 	return {
-		nextScore: bestScore,
+		nextScore: bestScore/2,
 		place: bestPlace
 	};
 }
@@ -160,7 +160,7 @@ function put(array, role) {
 
 		array[i] = 0;
 	}
-
+	console.log(tmp)
 	return {
 		nextScore: bestScore,
 		place: bestPlace
