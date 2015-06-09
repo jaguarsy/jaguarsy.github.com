@@ -1,0 +1,164 @@
+body{
+    font-family: 'Microsoft Yahei', sans-serif !important;
+}
+
+/*
+ * -- PURE FORM STYLES --
+ * Style the form inputs and labels
+ */
+.pure-form label {
+    margin: 1em 0 0;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.pure-form input[type=text],
+.pure-form input[type=email],
+.pure-form input[type=number],
+.pure-form input[type=password],
+.pure-form textarea{
+    border: 2px solid #ddd;
+    box-shadow: none;
+    font-size: 100%;
+    width: 100%;
+}
+
+/*
+ * -- PURE BUTTON STYLES --
+ * I want my pure-button elements to look a little different
+ */
+.pure-button {
+    background-color: #1f8dd6;
+    color: white;
+    padding: 0.5em 2em;
+}
+
+a.pure-button-primary {
+    background: white;
+    color: #1f8dd6;
+    font-size: 120%;
+}
+
+
+/*
+ * -- MENU STYLES --
+ * I want to customize how my .pure-menu looks at the top of the page
+ */
+
+.home-menu {
+    padding: 0.5em;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+}
+.home-menu {
+    background: #2d3e50;
+}
+.pure-menu.pure-menu-fixed {
+    /* Fixed menus normally have a border at the bottom. */
+    border-bottom: none;
+    /* I need a higher z-index here because of the scroll-over effect. */
+    z-index: 4;
+}
+
+.home-menu .pure-menu-heading {
+    color: white;
+    font-weight: 400;
+    font-size: 120%;
+}
+
+.home-menu .pure-menu-selected a {
+    color: white;
+}
+
+.home-menu a {
+    color: #6FBEF3;
+}
+.home-menu li a:hover,
+.home-menu li a:focus {
+    background: none;
+    border: none;
+    color: #AECFE5;
+}
+
+.summary{
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*加载动画*/
+.spinner {
+  width: 60px;
+  height: 60px;
+ 
+  position: relative;
+  margin: 100px auto;
+}
+ 
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #67CF22;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+   
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+ 
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+ul li{
+  list-style: disc;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.post-description{
+  margin-top: 20px;
+}
+
+.summary{
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.post-title a{
+  text-decoration: none;
+}
+
+.back{
+  text-transform: uppercase;
+  color: #aaa;
+  /*border-bottom: 1px solid #eee;*/
+  padding: 0.4em 0;
+  font-size: 80%;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  width: 100%;
+  text-decoration: none;
+}

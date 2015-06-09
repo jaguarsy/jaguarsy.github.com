@@ -1,0 +1,44 @@
+<div ng-hide="articles.length!=0">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="posts" ng-show="pinnedArticles.length!=0">
+    <h1 class="content-subhead">Pinned Post</h1>
+
+    <section class="post" ng-repeat="article in pinnedArticles = (articles | filter:{pinned:true})">
+        <header class="post-header">
+            <h2 class="post-title"><a href="#article/{{article.$id}}" ng-bind="article.title"></a></h2>
+
+            <p class="post-meta">
+                By
+                <a href="#" class="post-author" ng-bind="article.author"></a>
+                under
+                <span cage-category="article.category"></span>
+            </p>
+        </header>
+
+        <div class="post-description summary" ng-bind-html="article.description | unsafe"></div>
+    </section>
+</div>
+
+<div class="posts" ng-show="unpinnedArticles.length!=0">
+    <h1 class="content-subhead">Recent Posts</h1>
+
+    <section class="post" ng-repeat="article in unpinnedArticles = (articles | filter:{pinned:false})">
+        <header class="post-header">
+            <h2 class="post-title"><a href="#article/{{article.$id}}" ng-bind="article.title"></a></h2>
+
+            <p class="post-meta">
+                By
+                <a href="#" class="post-author" ng-bind="article.author"></a>
+                under
+                <span cage-category="article.category"></span>
+            </p>
+        </header>
+
+        <div class="post-description summary" ng-bind-html="article.description | unsafe"></div>
+    </section>
+</div>

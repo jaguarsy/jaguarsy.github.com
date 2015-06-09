@@ -1,0 +1,66 @@
+<div class="l-box-lrg pure-g pure-u-1 pure-u-md-4-5">
+    <form class="pure-form pure-form-stacked">
+        <fieldset>
+            <legend>
+                Author:
+                <span style="color:#aaaaaa;">Johnny</span>
+            </legend>
+
+            <div class="pure-g">
+                <div class="pure-u-1 pure-u-md-2-5">
+                    <label for="title">Title</label>
+                    <input id="title" class="pure-input-u-2-5" type="text" placeholder="Title" ng-model="article.title"></div>
+
+                <div class="pure-u-1 pure-u-md-2-5">
+                    <label for="category">Category</label>
+                    <input id="category" type="text" placeholder="category" ng-model="article.category"></div>
+
+                <div class="pure-u-1 pure-u-md-4-5">
+                    <label for="description">Content</label>
+                    <div id="description" config="_simpleConfig" class="ueditor"
+                        ng-model="article.description" style="width:100%;height:300px"></div>
+                </div>
+                <div class="pure-u-1 pure-u-md-4-5">
+                    <label for="pinned" class="pure-checkbox">
+                        <input id="pinned" type="checkbox" ng-model="article.pinned">Is Pinned</label>
+                </div>
+                <div class="pure-u-1 pure-u-md-4-5">
+                    <button class="pure-button pure-button-primary" ng-click="add()">Add</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <table class="pure-table pure-table-horizontal">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Time</th>
+                <th>Is Pinned</th>
+                <th>operate</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat='article in articles'>
+                <td ng-bind='article.title'></td>
+                <td ng-bind='article.author'></td>
+                <td ng-bind='article.category'></td>
+                <td>
+                    <div ng-bind='article.description | summary' class="summary" style="max-width:300px"></div>
+                </td>
+                <td ng-bind='article.time | date:"yyyy-MM-dd HH:mm:ss Z"'></td>
+                <td ng-bind='article.pinned'></td>
+                <td>
+                    <a href ng-click="edit(article)">edit</a>
+                    |
+                    <a href ng-click="remove(article)">delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

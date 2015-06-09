@@ -1,0 +1,17 @@
+<a href="#/" class="back">back</a>
+<section class="post" ng-show="article">
+    <header class="post-header">
+        <h2 class="post-title">
+            <a href="#" ng-bind="article.title"></a>
+        </h2>
+
+        <p class="post-meta">
+            By
+            <a href="#" class="post-author" ng-bind="article.author"></a>
+            under
+            <span cage-category="article.category"></span>
+        </p>
+    </header>
+
+    <div class="post-description" ng-bind-html="article.description | unsafe"></div>
+</section>

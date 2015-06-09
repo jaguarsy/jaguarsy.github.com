@@ -1,71 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="cageblog">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <title>Johnny's Blog</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="css/awsome.css">
-</head>
+    <title>Blog of Johnny Cage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A personal blog by Johnny Cage.">
+    <link rel="stylesheet" type="text/css" href="public/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="public/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="public/css/blog.css">
+    <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="public/css/index.css"></head>
 <body>
-    <div id="wapper">
-        <header>
-            <div class="container">
-                <ul id="maintab" class="breadcrumb">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-            </div>
-        </header>
-        <div id="main-content" class="container">
-            <div class="tab-content">
-                <div class="tab-pane fade active in" id="home">
 
-                </div>
-                <div class="tab-pane fade" id="about">
-                    <p>Johnny Cage.</p>
-                </div>
-            </div>
+    <div id="layout" class="pure-g">
+        <div class="sidebar pure-u-1 pure-u-md-1-4">
+            <div class="header">
+                <h1 class="brand-title">Blog of Johnny Cage</h1>
+                <h2 class="brand-tagline"><small>今宵酒醒何处，杨柳岸，晓风残月。</small></h2>
 
-            <div id="template-article" class="hidden">
-    	       <div class="panel panel-default article">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><a data-toggle="collapse" data-toggle="collapse" data-parent="#home" href="#$id$">$title$</a></h3>
-                    </div>
-                    <div id="$id$" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            $content$
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <small class="text-primary">$author$</small>
-                        <small>发布于&nbsp;$time$</small>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a class="pure-button" href="#/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="pure-button" href="#about">About</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="content pure-u-1 pure-u-md-3-4">
+            <div>
+                <div ng-view></div>
+
+                <div class="footer">
+                    <div class="pure-menu pure-menu-horizontal">
+                        <ul>
+                            <li class="pure-menu-item">
+                                <a href="http://weibo.com/johnnycage1114" class="pure-menu-link">Weibo</a>
+                            </li>
+                            <li class="pure-menu-item">
+                                <a href="https://github.com/jaguarsy" class="pure-menu-link">GitHub</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<!--         <footer id="footer" class="bs-footer" role="contentinfo">
-            <div class="container">
-                <small class="pull-right">© 2014 <a href="#" target="_blank">Johnny</a>. All Rights Reserved. Powered by <a href="http://v3.bootcss.com/">Bootstrap v3.0.3</a></small>
-            </div>
-        </footer> -->
 
-    <script type="text/javascript" charset="utf-8" src="js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/firebase.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/guid.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/fun.js"></script>
-    <script type="text/javascript">
-        $('#maintab a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-
-        $('#home').collapse({
-            toggle: false
-        });
-    </script>
+    <script type="text/javascript" src="public/js/firebase.js"></script>
+    <script type="text/javascript" src="public/js/ueditor.config.js"></script>
+    <script type="text/javascript" src="public/js/ueditor.all.js"></script>
+    <script type="text/javascript" src="public/js/angular.min.js"></script>
+    <script type="text/javascript" src="public/js/angular-ueditor.js"></script>
+    <script type="text/javascript" src="public/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="public/js/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="public/js/angularfire.min.js"></script>
+    <script type="text/javascript" src="apps/js/app.js"></script>
+    <script type="text/javascript" src="apps/js/service.js"></script>
+    <script type="text/javascript" src="apps/js/directive.js"></script>
+    <script type="text/javascript" src="apps/js/filter.js"></script>
+    <script type="text/javascript" src="apps/js/controller.js"></script>
 </body>
 </html>
