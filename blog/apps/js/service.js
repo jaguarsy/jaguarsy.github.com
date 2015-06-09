@@ -64,10 +64,6 @@ angular.module('cageblog')
 					return articles;
 				},
 
-				getArticle: function(id) {
-					return $firebaseObject(db.child('articles/'+id));
-				},
-
 				add: function(article, callback) {
 					articles.$add(article).then(function(ref) {
 						if (callback) callback();
