@@ -140,11 +140,15 @@ ul li{
 
 .post-description{
   margin-top: 20px;
+  overflow: hidden;
+}
+
+.post-description img{
+  max-width: 100% !important;
 }
 
 .summary{
   max-height: 500px;
-  overflow: hidden;
 }
 
 .post-title a{
