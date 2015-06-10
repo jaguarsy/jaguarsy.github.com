@@ -80,14 +80,6 @@ a.pure-button-primary {
     color: #AECFE5;
 }
 
-.summary{
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 /*加载动画*/
 .spinner {
   width: 60px;
@@ -140,7 +132,6 @@ ul li{
 
 .post-description{
   margin-top: 20px;
-  overflow: hidden;
 }
 
 .post-description img{
@@ -149,6 +140,9 @@ ul li{
 
 .summary{
   max-height: 500px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
 }
 
 .post-title a{
