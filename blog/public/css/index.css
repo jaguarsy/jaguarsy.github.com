@@ -166,3 +166,20 @@ ul li{
   width: 100%;
   text-decoration: none;
 }
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive > table > tr > th,
+.table-responsive > table > tr > th,
+.table-responsive > table > tr > th,
+.table-responsive > table > tr > td,
+.table-responsive > table > tr > td,
+.table-responsive > table > tr > td {
+  white-space: nowrap;
+}

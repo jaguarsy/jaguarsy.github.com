@@ -24,10 +24,8 @@ angular.module('cageblog')
 				auth = $firebaseAuth(db);
 
 			return {
-				getCurrent: function() {
-					return {
-						uid: $cookies.uid
-					}
+				authorized: function() {
+					return  $cookies.uid != null;
 				},
 
 				signIn: function(email, password, callback) {
