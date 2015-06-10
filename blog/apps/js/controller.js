@@ -28,7 +28,7 @@ angular.module('cageblog')
 
         $scope.articles = list;
 
-        if(id){
+        if (id) {
             list.$loaded().then(function() {
                 $scope.article = list.$getRecord(id);
             });
@@ -52,16 +52,22 @@ angular.module('cageblog')
         }
 
         $scope.add = function() {
-            article.add({
-                title: $scope.article.title,
-                author: 'Johnny Cage',
-                category: $scope.article.category,
-                description: $scope.article.description,
-                time: new Date().getTime(),
-                pinned: $scope.article.pinned == true
-            }, function() {
-                $scope.article = undefined;
-            });
+            if ($scope.article.$id) {
+                article.save($scope.article, function() {
+                    $scope.article = undefined;
+                });
+            } else {
+                article.add({
+                    title: $scope.article.title,
+                    author: 'Johnny Cage',
+                    category: $scope.article.category,
+                    description: $scope.article.description,
+                    time: new Date().getTime(),
+                    pinned: $scope.article.pinned == true
+                }, function() {
+                    $scope.article = undefined;
+                });
+            }
         }
 
         $scope.edit = function(target) {
