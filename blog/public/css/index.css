@@ -125,7 +125,7 @@ a.pure-button-primary {
 
 ul li{
   list-style: disc;
-  margin: 10px 0;
+  margin-top: 5px;
   font-size: 16px;
   color: #666;
 }
@@ -176,4 +176,15 @@ ul li{
 .table-responsive > table > tr > td,
 .table-responsive > table > tr > td {
   white-space: nowrap;
+}
+
+.nav-item a.pure-button{
+  margin: 0;
+  width: 88px;
+  padding: 6.8px 0;
+  text-align: center;
+}
+
+.nav{
+  padding-top: 10px;
 }
