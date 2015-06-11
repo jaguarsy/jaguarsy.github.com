@@ -33,6 +33,11 @@ angular.module('cageblog', ['ngRoute', 'ngCookies', 'firebase', 'ng.ueditor'])
             templateUrl: 'apps/views/article.html',
             controller: 'ArticleCtrl'
         })
+        .when('/manage/:id', {
+            templateUrl: 'apps/views/manage.html',
+            controller: 'ManageCtrl',
+            authorized: true
+        })
         .when('/manage', {
             templateUrl: 'apps/views/manage.html',
             controller: 'ManageCtrl',

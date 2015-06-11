@@ -20,8 +20,9 @@ angular.module('cageblog')
 .controller('ArticleCtrl', [
     '$scope',
     'article',
+    'account',
     '$routeParams',
-    function($scope, article, $routeParams) {
+    function($scope, article, account, $routeParams) {
 
         var list = article.get(),
             id = $routeParams.id;
@@ -40,15 +41,25 @@ angular.module('cageblog')
     '$scope',
     'article',
     'account',
-    function($scope, article, account) {
+    '$routeParams',
+    function($scope, article, account, $routeParams) {
+
+        var list = article.get(),
+            id = $routeParams.id;
 
         $scope.article = {};
-        $scope.articles = article.get();
+        $scope.articles = list;
 
         $scope._simpleConfig = {
             autoClearinitialContent: false,
             wordCount: true,
             elementPathEnabled: false
+        }
+        
+        if (id) {
+            list.$loaded().then(function() {
+                $scope.article = list.$getRecord(id);
+            });
         }
 
         $scope.add = function() {
