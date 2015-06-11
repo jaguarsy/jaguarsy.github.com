@@ -26,7 +26,7 @@ angular.module('cageblog')
 
             return {
                 authorized: function() {
-                    return $cookies.uid != null;
+                    return $cookies.uid != null && $cookies.uid != '';
                 },
 
                 getCurrent: function() {
