@@ -56,7 +56,7 @@ http://inhu.net
                     }
                     _updateByRender = false;
                   });
-                  if (_self.modelContent.length > 0) {
+                  if (_self.modelContent && _self.modelContent.length > 0) {
                     _self.setEditorContent();
                   }
                   if (typeof $S.ready === "function") {

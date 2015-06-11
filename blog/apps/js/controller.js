@@ -28,6 +28,7 @@ angular.module('cageblog')
             id = $routeParams.id;
 
         $scope.articles = list;
+        $scope.auth = account.authorized();
 
         if (id) {
             list.$loaded().then(function() {
@@ -55,7 +56,7 @@ angular.module('cageblog')
             wordCount: true,
             elementPathEnabled: false
         }
-        
+
         if (id) {
             list.$loaded().then(function() {
                 $scope.article = list.$getRecord(id);
