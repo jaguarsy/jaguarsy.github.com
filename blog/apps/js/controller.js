@@ -42,14 +42,16 @@ angular.module('cageblog')
     '$scope',
     'article',
     'account',
+    '$location',
     '$routeParams',
-    function($scope, article, account, $routeParams) {
+    function($scope, article, account, $location, $routeParams) {
 
         var list = article.get(),
             id = $routeParams.id;
 
         $scope.article = {};
         $scope.articles = list;
+        $scope.current = account.getCurrent();
 
         $scope._simpleConfig = {
             autoClearinitialContent: false,
@@ -71,7 +73,7 @@ angular.module('cageblog')
             } else {
                 article.add({
                     title: $scope.article.title,
-                    author: 'Johnny Cage',
+                    author: $scope.current.nickName,
                     category: $scope.article.category,
                     description: $scope.article.description,
                     time: new Date().getTime(),
@@ -88,6 +90,11 @@ angular.module('cageblog')
 
         $scope.remove = function(target) {
             article.remove(target)
+        }
+
+        $scope.signOut = function(){
+            account.signOut();
+            $location.path('login');
         }
 
     }

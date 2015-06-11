@@ -18,7 +18,8 @@ angular.module('cageblog')
         '$cookies',
         'db',
         '$firebaseAuth',
-        function($cookies, db, $firebaseAuth) {
+        '$firebaseObject',
+        function($cookies, db, $firebaseAuth, $firebaseObject) {
 
             var db = db.getDB(),
                 auth = $firebaseAuth(db);
@@ -26,6 +27,11 @@ angular.module('cageblog')
             return {
                 authorized: function() {
                     return $cookies.uid != null;
+                },
+
+                getCurrent: function() {
+                    if (!this.authorized()) return undefined;
+                    return $firebaseObject(db.child('users/' + $cookies.uid));
                 },
 
                 signIn: function(email, password, callback) {
