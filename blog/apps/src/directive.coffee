@@ -10,7 +10,7 @@ angular.module 'cageblog'
 				return if !value
 
 				for cate in value.split ','
-					a = angular.element '<a class="post-category" href="#"></a>'
+					a = angular.element '<a class="post-category" href="javascript:void(0)"></a>'
 					a.addClass 'post-category-' + rand()
 					a.text cate
 					element.append a

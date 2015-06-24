@@ -121,7 +121,7 @@
           ref1 = value.split(',');
           for (i = 0, len = ref1.length; i < len; i++) {
             cate = ref1[i];
-            a = angular.element('<a class="post-category" href="#"></a>');
+            a = angular.element('<a class="post-category" href="javascript:void(0)"></a>');
             a.addClass('post-category-' + rand());
             a.text(cate);
             element.append(a);
