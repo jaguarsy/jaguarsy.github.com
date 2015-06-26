@@ -19,19 +19,26 @@ module.exports = (grunt) ->
         concat:
             options: 
                 separator: ';'
-
             dist: 
                 src: ['public/js/*.js']
                 dest: 'public/js/third-part.all.js'
 
+        watch:
+            build:
+                files: ['apps/src/*.coffee']
+                tasks: ['coffee', 'uglify']
+                options:
+                    spawn: false
 
     # Dependencies
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-concat'
+    grunt.loadNpmTasks 'grunt-contrib-watch'
 
     grunt.registerTask 'default', [
         'coffee'
         'uglify'
         #'concat'
+        'watch'
     ]
