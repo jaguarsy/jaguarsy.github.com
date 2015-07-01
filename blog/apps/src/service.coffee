@@ -17,7 +17,7 @@ angular.module 'cageblog'
             auth = $firebaseAuth db
             
             authorized: -> 
-                $cookies.uid isnt undefined
+                $cookies.uid != undefined
 
             getCurrent: ->
                 return undefined if !this.authorized()
@@ -40,7 +40,7 @@ angular.module 'cageblog'
                 return
 
             signOut: ->
-                $cookies.uid = undefined
+                delete $cookies.uid
                 auth.$unauth()
                 return
     ]

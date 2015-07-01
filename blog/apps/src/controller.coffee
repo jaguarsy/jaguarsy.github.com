@@ -6,9 +6,16 @@ angular.module 'cageblog'
     '$location'
     ($scope, account, $location) ->
 
+        $scope.auth = account.authorized();
+
         $scope.login = ->
+            $scope.isLoading = true
             account.signIn $scope.email, $scope.password, ->
-                $location.path 'manage'
+                $scope.email = ''
+                $scope.password = ''
+                $scope.isLoading = false
+                $scope.isLogin = false
+                $scope.auth = account.authorized();
                 return
             return
         return
@@ -90,7 +97,7 @@ angular.module 'cageblog'
 
         $scope.signOut = ->
             account.signOut()
-            $location.path 'login'
+            $location.path '#'
             return
         return
 ]

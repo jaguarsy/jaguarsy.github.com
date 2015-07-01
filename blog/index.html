@@ -10,13 +10,17 @@
     <link rel="stylesheet" type="text/css" href="public/css/blog.css">
     <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="public/css/index.css"></head>
-<body>
+<body ng-controller="AccountCtrl">
 
-    <div id="layout" class="pure-g">
+    <div id="layout" class="pure-g" ng-class="{blur:isLogin}">
         <div class="sidebar pure-u-1 pure-u-md-1-4">
             <div class="header">
-                <h1 class="brand-title">Johnny Cage's Blog</h1>
-                <h2 class="brand-tagline"><small>今宵酒醒何处，杨柳岸，晓风残月。</small></h2>
+                <h1 class="brand-title">
+                    Johnny Cage's <a href="#manage">B</a><a ng-click="isLogin=true">l</a>og
+                </h1>
+                <h2 class="brand-tagline">
+                    <small>今宵酒醒何处，杨柳岸，晓风残月。</small>
+                </h2>
                 <nav class="nav">
                     <ul class="nav-list">
                         <li class="nav-item">
@@ -50,6 +54,45 @@
         </div>
     </div>
 
+    <div class="login-panel l-box-lrg pure-u-1 pure-u-md-2-5" ng-show="isLogin">
+        <form class="pure-form pure-form-stacked" ng-hide="isLoading">
+            <fieldset >
+                <label for="email">Your Email</label>
+                <input id="email" type="email" placeholder="Your Email" ng-model="email">
+
+                <label for="password">Your Password</label>
+                <input id="password" type="password" placeholder="Your Password" ng-model="password">
+
+                <div class="button-group">
+                    <button class="pure-button button-success" ng-click="login()">Sign In</button>
+                    <button class="pure-button button-secondary" ng-click="isLogin=false">Cancel</button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="loading" ng-show="isLoading">
+            <div class="loading-container container1">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="loading-container container2">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="loading-container container3">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="shade" ng-show="isLogin">
+    </div>
+
     <script type="text/javascript" src="public/js/firebase.js"></script>
     <script type="text/javascript" src="public/js/ueditor.config.js"></script>
     <script type="text/javascript" src="public/js/ueditor.all.min.js"></script>
@@ -60,9 +103,10 @@
     <script type="text/javascript" src="public/js/angularfire.min.js"></script>
     <script type="text/javascript" src="apps/js/blog.min.js"></script>
     <!--<script type="text/javascript" src="apps/js/app.js"></script>
-    <script type="text/javascript" src="apps/js/service.js"></script>
-    <script type="text/javascript" src="apps/js/directive.js"></script>
-    <script type="text/javascript" src="apps/js/filter.js"></script>
-    <script type="text/javascript" src="apps/js/controller.js"></script>-->
+<script type="text/javascript" src="apps/js/service.js"></script>
+<script type="text/javascript" src="apps/js/directive.js"></script>
+<script type="text/javascript" src="apps/js/filter.js"></script>
+<script type="text/javascript" src="apps/js/controller.js"></script>
+-->
 </body>
 </html>

@@ -4,7 +4,7 @@
     '$rootScope', '$location', '$cookies', function($rootScope, $location, $cookies) {
       return $rootScope.$on('$routeChangeStart', function(event, next) {
         if (next.authorized && !$cookies.uid) {
-          return $location.path('login');
+          return $location.path('#');
         }
       });
     }
@@ -40,9 +40,15 @@
 (function() {
   angular.module('cageblog').controller('AccountCtrl', [
     '$scope', 'account', '$location', function($scope, account, $location) {
+      $scope.auth = account.authorized();
       $scope.login = function() {
+        $scope.isLoading = true;
         account.signIn($scope.email, $scope.password, function() {
-          $location.path('manage');
+          $scope.email = '';
+          $scope.password = '';
+          $scope.isLoading = false;
+          $scope.isLogin = false;
+          $scope.auth = account.authorized();
         });
       };
     }
@@ -103,7 +109,7 @@
       };
       $scope.signOut = function() {
         account.signOut();
-        $location.path('login');
+        $location.path('#');
       };
     }
   ]);
@@ -212,7 +218,7 @@
           });
         },
         signOut: function() {
-          $cookies.uid = void 0;
+          delete $cookies.uid;
           auth.$unauth();
         }
       };

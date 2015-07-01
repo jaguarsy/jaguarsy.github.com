@@ -9,7 +9,7 @@ angular.module 'cageblog', ['ngRoute', 'ngCookies', 'firebase', 'ng.ueditor']
     ($rootScope, $location, $cookies) ->
 
         $rootScope.$on '$routeChangeStart', (event, next) ->
-            $location.path 'login' if next.authorized and !$cookies.uid
+            $location.path '#' if next.authorized and !$cookies.uid
             
 ]
 
