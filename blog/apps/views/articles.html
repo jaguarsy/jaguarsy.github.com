@@ -10,7 +10,9 @@
 
     <section class="post" ng-repeat="article in pinnedArticles = (articles | filter:{pinned:true})">
         <header class="post-header">
-            <h2 class="post-title"><a href="#article/{{article.$id}}" ng-bind="article.title"></a></h2>
+            <h2 class="post-title">
+                <a href="#article/{{article.$id}}" ng-bind="article.title"></a>
+            </h2>
 
             <p class="post-meta">
                 By
@@ -29,7 +31,9 @@
 
     <section class="post" ng-repeat="article in unpinnedArticles = (articles | filter:{pinned:false})">
         <header class="post-header">
-            <h2 class="post-title"><a href="#article/{{article.$id}}" ng-bind="article.title"></a></h2>
+            <h2 class="post-title">
+                <a href="#article/{{article.$id}}" ng-bind="article.title"></a>
+            </h2>
 
             <p class="post-meta">
                 By

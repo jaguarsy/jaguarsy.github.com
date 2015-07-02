@@ -42,10 +42,10 @@
                     <div class="pure-menu pure-menu-horizontal">
                         <ul>
                             <li class="pure-menu-item">
-                                <a href="http://weibo.com/johnnycage1114" class="pure-menu-link">Weibo</a>
+                                <a href="http://weibo.com/johnnycage1114" class="pure-menu-link" target="_blank">Weibo</a>
                             </li>
                             <li class="pure-menu-item">
-                                <a href="https://github.com/jaguarsy" class="pure-menu-link">GitHub</a>
+                                <a href="https://github.com/jaguarsy" class="pure-menu-link" target="_blank">GitHub</a>
                             </li>
                         </ul>
                     </div>
@@ -58,10 +58,10 @@
         <form class="pure-form pure-form-stacked" ng-hide="isLoading">
             <fieldset >
                 <label for="email">Your Email</label>
-                <input id="email" type="email" placeholder="Your Email" ng-model="email">
+                <input id="email" type="email" placeholder="Your Email" ng-model="email">    
 
                 <label for="password">Your Password</label>
-                <input id="password" type="password" placeholder="Your Password" ng-model="password">
+                <input id="password" type="password" placeholder="Your Password" ng-model="password">    
 
                 <div class="button-group">
                     <button class="pure-button button-success" ng-click="login()">Sign In</button>
@@ -92,6 +92,12 @@
     </div>
     <div class="shade" ng-show="isLogin">
     </div>
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript">
+            document.body.innerHTML ="你的浏览器是IE且版本太低，请使用IE10及以上的浏览器，或更换其它浏览器访问。"
+        </script>
+    <![endif]-->
 
     <script type="text/javascript" src="public/js/firebase.js"></script>
     <script type="text/javascript" src="public/js/ueditor.config.js"></script>
