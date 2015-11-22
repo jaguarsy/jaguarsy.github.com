@@ -9,6 +9,4 @@
         console.log('test');
 
 
-test `console.log("test")`;
-
-<div class="footer">&copy; 2004 Foo Corporation</div>
+test `console.log("test");`
