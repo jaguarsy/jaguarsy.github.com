@@ -206,6 +206,14 @@
             this.className = '';
         };
 
+        function $(selector) {
+            if (selector.indexOf('#') > -1) {
+                return document.querySelector(selector);
+            } else {
+                return document.querySelectorAll(selector);
+            }
+        }
+
         function getHash(url) {
             var obj;
             var url = url || location.hash;
@@ -222,14 +230,6 @@
             return obj;
         }
 
-        function $(selector) {
-            if (selector.indexOf('#') > -1) {
-                return document.querySelector(selector);
-            } else {
-                return document.querySelectorAll(selector);
-            }
-        }
-
         function urlClickHandler() {
             hash = getHash(this.href);
             if (!hash) return;
@@ -239,7 +239,6 @@
                 type: hash.type
             }, hash.url, hash.hash);
         }
-
 
         function createArticle(article) {
             var li = document.createElement('li');
