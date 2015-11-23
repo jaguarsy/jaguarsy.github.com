@@ -87,6 +87,7 @@
         titleText.href = '#/article/' + article.name;
         titleText.innerText = article.title;
         titleText.addEventListener('click', urlClickHandler);
+        article.time = article.time.replace('-', '/');
         time.innerText = new Date(article.time).toDateString();
 
         article.tags.forEach(function (value) {
