@@ -143,7 +143,7 @@ module.exports = function (grunt) {
 
         watch: {
             styles: {
-                files: ['md/*.md', 'css/*.js', 'js/*.js', '*.html', 'Gruntfile.js', '!css/*.min.css', '!js/*.min.js'],
+                files: ['md/*.md', 'css/*.less', 'js/*.js', '*.html', 'Gruntfile.js', '!css/*.min.css', '!js/*.min.js'],
                 tasks: ['clean:before', 'jshint', 'less', 'uglify', 'processhtml', 'htmlmin', 'markdown', 'clean:after']
             }
         }

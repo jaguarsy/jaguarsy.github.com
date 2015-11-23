@@ -1,5 +1,6 @@
 html, body {
   min-height: 100%;
+  margin: 0;
 }
 
 a,
@@ -23,109 +24,208 @@ ul {
   font-family: 'Microsoft Yahei';
 }
 
+.nav-bar {
+  width: 100%;
+  margin-bottom: 30px;
+
+  .nav {
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    form {
+      display: inline;
+    }
+
+    > .nav-item {
+      margin-right: 34px;
+    }
+
+    .nav-item {
+      display: inline-block;
+      line-height: 34px;
+      height: 34px;
+      color: #999;
+      font-weight: bolder;
+      padding: 0 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        color: #333;
+      }
+
+      &.active {
+        color: #333;
+      }
+    }
+
+    .nav-control {
+      border: none;
+      padding: 0;
+      border-bottom: solid 1px #ddd;
+      line-height: 24px;
+      margin: 5px;
+      color: #555;
+    }
+
+    .nav-control:focus {
+      outline: none;
+    }
+  }
+}
+
+.content {
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    text-indent: 28px;
+  }
+}
+
+.pager {
+  margin: 40px 0;
+  text-align: center;
+
+  div {
+    display: inline-block;
+    width: 50%;
+  }
+
+  a {
+    color: #2682c3;
+  }
+}
+
+.article {
+  border-bottom: solid 2px #eee;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  position: relative;
+
+  .title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 2.2rem;
+    line-height: 1.15em;
+  }
+
+  .content {
+    padding: 15px 0;
+    line-height: 25px;
+    font-size: 14px;
+  }
+
+  .time,
+  .tags {
+    line-height: 25px;
+    opacity: .5;
+  }
+
+  .tags {
+    font-size: 14px;
+  }
+}
+
+//media
 @media (min-width: 480px) {
   .container {
     width: 80%;
     max-width: 1000px;
   }
+
+  .article {
+
+    .title {
+      margin-left: 20%;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      margin-left: 20%;
+    }
+
+    .time,
+    .tags {
+      position: absolute;
+      left: 0;
+    }
+
+    .time {
+      top: 0;
+    }
+
+    .tags {
+      top: 25px;
+    }
+  }
 }
 
-.nav-bar {
-  width: 100%;
-  margin-bottom: 30px;
+@media (min-width: 480px) and (max-width: 1000px) {
+  .article {
+
+    .title {
+      margin-left: 160px;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      margin-left: 160px;
+    }
+  }
 }
 
-.nav-bar .nav {
-  padding: 8px 0;
+@media (max-width: 560px) {
+  .hidden-sm {
+    display: none !important;
+  }
 }
 
-.nav .nav-item {
-  display: inline-block;
-  line-height: 34px;
-  height: 34px;
-  color: #999;
-  font-weight: bolder;
-  margin-right: 34px;
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+
+    > div,
+    > ul {
+      padding: 0 15px;
+    }
+  }
+
+  .nav-bar {
+    .nav {
+      .nav-item {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .article {
+    .title {
+      font-size: 1.6rem;
+    }
+  }
+
+  .hidden-xs {
+    display: none !important;
+  }
 }
 
-.nav .nav-item:last-child {
-  margin-right: 0;
+@media (max-width: 370px) {
+  .nav-bar {
+    .nav {
+      .nav-control {
+        display: none;
+      }
+    }
+  }
 }
 
-.nav-item.active {
-  color: #333;
-}
-
-.nav-item:hover {
-  color: #333;
-}
-
-.nav-control {
-  border: none;
-  padding: 0;
-  border-bottom: solid 1px #ddd;
-  line-height: 24px;
-  margin: 5px;
-  color: #555;
-  font-weight: bolder;
-}
-
-.nav-control:focus {
-  outline: none;
-}
-
-.article {
-  border-bottom: solid 2px #eee;
-  padding-bottom: 40px;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.article:after {
-  display: table;
-  content: '';
-  clear: both;
-}
-
-.article .title {
-  margin-left: 20%;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 2.2rem;
-  line-height: 1.15em;
-}
-
-.article .title a {
-}
-
-.article .content {
-  margin-left: 20%;
-  padding: 15px 0;
-  line-height: 25px;
-  font-size: 14px;
-}
-
-.article .time,
-.article .tags {
-  line-height: 25px;
-  opacity: .5;
-  position: absolute;
-  left: 0;
-}
-
-.article .time {
-  top: 0;
-}
-
-.article .tags {
-  top: 25px;
-  font-size: 14px;
-}
-
+//tools
 .pull-right {
   float: right;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
