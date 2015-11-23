@@ -89,8 +89,8 @@ module.exports = function (grunt) {
                     collapseWhitespace: true
                 },
                 files: {
-                    src: 'publish/index.html',
-                    dest: './'
+                    '../blog2/index.html': 'publish/index.html',
+                    'publish/index.html': 'publish/index.html'
                 }
             }
         },
@@ -102,6 +102,11 @@ module.exports = function (grunt) {
                         expand: true,
                         src: ['md/*.md'],
                         dest: 'publish/',
+                        filter: 'isFile'
+                    }, {
+                        expand: true,
+                        src: ['md/*.md'],
+                        dest: '../blog2/',
                         filter: 'isFile'
                     }
                 ]
@@ -115,6 +120,11 @@ module.exports = function (grunt) {
                         expand: true,
                         src: 'md/*.md',
                         dest: 'publish/',
+                        ext: '.md'
+                    }, {
+                        expand: true,
+                        src: 'md/*.md',
+                        dest: '../blog2/',
                         ext: '.md'
                     }
                 ],
@@ -140,7 +150,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-processhtml');
-    grunt.loadNpmTasks('grunt-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
