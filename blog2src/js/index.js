@@ -22,6 +22,7 @@
         $articles = $('#articles'),
         $about = $('#about'),
         $keyword = $('#keyword'),
+        $title = $('#title'),
         $searchform = $('#search-form'),
         hash = getHash();
 
@@ -136,20 +137,22 @@
     }
 
     function getPrevAndNext(name) {
-        var prev, next;
+        var prev, next, article;
 
         for (var i = 0, len = articleConfig.articles.length; i < len; i++) {
-            var article = articleConfig.articles[i],
-                nextIndex = i + 1;
+            article = articleConfig.articles[i];
+            var nextIndex = i + 1;
 
             next = nextIndex >= len ? undefined : articleConfig.articles[nextIndex];
 
             if (article.name === name) {
-                return {prev: prev, next: next};
+                return {prev: prev, current: article, next: next};
             }
 
             prev = article;
         }
+
+        return {};
     }
 
     function initArticle(url) {
@@ -170,6 +173,8 @@
             } else {
                 $next.hide();
             }
+
+            $title.innerText = siblings.current.title;
 
             $content.innerHTML = result;
             $container.radioShow();
