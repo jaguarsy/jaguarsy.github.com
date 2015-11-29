@@ -23,6 +23,7 @@
         $about = $('#about'),
         $keyword = $('#keyword'),
         $title = $('#title'),
+        $time = $('#time'),
         $searchform = $('#search-form'),
         hash = getHash();
 
@@ -175,6 +176,7 @@
             }
 
             $title.innerText = siblings.current.title;
+            $time.innerText = siblings.current.time;
 
             $content.innerHTML = result;
             $container.radioShow();
