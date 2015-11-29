@@ -25,7 +25,6 @@
         $title = $('#title'),
         $time = $('#time'),
         $searchform = $('#search-form'),
-        $time = $('#time'),
         hash = getHash();
 
     Node.prototype.show = function () {
