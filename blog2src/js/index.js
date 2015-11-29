@@ -25,6 +25,7 @@
         $title = $('#title'),
         $time = $('#time'),
         $searchform = $('#search-form'),
+        $time = $('#time'),
         hash = getHash();
 
     Node.prototype.show = function () {
@@ -53,8 +54,8 @@
             group = hash.split('/');
         if (group.length > 0) {
             obj = {};
-            obj.type = group[0].toLowerCase();
-            obj.url = group[1] ? group[1].toLowerCase() : group[0];
+            obj.type = group[0];
+            obj.url = group[1] ? group[1] : group[0];
             obj.hash = '#/' + hash;
         }
 
@@ -63,14 +64,16 @@
 
     function urlClickHandler(event) {
         hash = getHash(event.target.href);
-        if (!hash) {
-            return;
+        if (!hash || location.hash === hash.hash) {
+            return false;
         }
         history.pushState({
             title: hash.url,
             url: hash.url,
             type: hash.type
         }, hash.url, hash.hash);
+
+        return false;
     }
 
     function createArticle(article) {
@@ -201,11 +204,13 @@
     init(hash);
 
     $searchform.onsubmit = function () {
+        location.hash = '#/';
         initArticleList();
         return false;
     };
 
     $keyword.addEventListener('keyup', function () {
+        location.hash = '#/';
         initArticleList();
     });
 
