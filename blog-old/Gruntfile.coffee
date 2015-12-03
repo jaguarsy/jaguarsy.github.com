@@ -13,7 +13,7 @@ module.exports = (grunt) ->
                 stripBanners: true
                 banner: '/*! <%= pkg.name %>-<%= pkg.version %>.js <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             build:
-                src: 'apps/js/blog.js'
+                src: 'apps/js/blog3.js'
                 dest: 'apps/js/<%= pkg.name %>.min.js'
 
         concat:

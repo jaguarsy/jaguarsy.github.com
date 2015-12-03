@@ -50,7 +50,7 @@ audio:not([controls]) {
    ========================================================================== */
 /*
  * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
- *    http://clagnut.com/blog/348/#c790
+ *    http://clagnut.com/blog3/348/#c790
  * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
  */
@@ -273,7 +273,7 @@ nav ol {
 /*
  * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
  * 2. Improves image quality when scaled in IE7
- *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ *    code.flickr.com/blog3/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
  */
 img {
   border: 0;
@@ -428,7 +428,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /*
  * Removes inner padding and border in FF3+
- * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+ * www.sitepen.com/blog3/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
  */
 button::-moz-focus-inner,
 input::-moz-focus-inner {

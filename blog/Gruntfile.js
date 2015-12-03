@@ -15,23 +15,20 @@ module.exports = function (grunt) {
             },
             build: [
                 'gruntfile.js',
-                'js/*.js',
-                '!js/*.min.js'
+                'src/js/*.js',
+                '!src/js/*.min.js'
             ]
         },
 
         clean: {
-            before: {
-                src: ['publish']
-            },
             after: {
-                src: ['css/*.min.css', 'js/*.min.js']
+                src: ['src/css/*.min.css', 'src/js/*.min.js']
             }
         },
 
         'http-server': {
             'dev': {
-                root: 'publish',
+                root: './',
                 port: 8001,
                 host: '0.0.0.0',
                 showDir: true,
@@ -54,8 +51,8 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    src: ['css/awesome.less'],
-                    dest: 'css/',
+                    src: ['src/css/awesome.less'],
+                    dest: 'src/css/',
                     filter: 'isFile',
                     flatten: true,
                     ext: '.min.css'
@@ -66,7 +63,7 @@ module.exports = function (grunt) {
         uglify: {
             watch: {
                 files: [{
-                    'js/index.min.js': ['js/config.js', 'js/index.js']
+                    'src/js/index.min.js': ['src/js/config.js', 'src/js/index.js']
                 }]
             }
         },
@@ -77,7 +74,7 @@ module.exports = function (grunt) {
                     process: true
                 },
                 files: {
-                    'publish/index.html': ['index.html']
+                    'index.html': ['src/index.html']
                 }
             }
         },
@@ -89,8 +86,7 @@ module.exports = function (grunt) {
                     collapseWhitespace: true
                 },
                 files: {
-                    '../blog2/index.html': 'publish/index.html',
-                    'publish/index.html': 'publish/index.html'
+                    'index.html': 'index.html'
                 }
             }
         },
@@ -100,13 +96,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['md/*.md'],
-                        dest: 'publish/',
-                        filter: 'isFile'
-                    }, {
-                        expand: true,
-                        src: ['md/*.md'],
-                        dest: '../blog2/',
+                        src: ['src/images/*'],
+                        dest: './images',
+                        flatten: true,
                         filter: 'isFile'
                     }
                 ]
@@ -118,13 +110,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: 'md/*.md',
-                        dest: 'publish/',
-                        ext: '.md'
-                    }, {
-                        expand: true,
-                        src: 'md/*.md',
-                        dest: '../blog2/',
+                        src: 'src/md/*.md',
+                        dest: './md',
+                        flatten: true,
                         ext: '.md'
                     }
                 ],
@@ -143,8 +131,9 @@ module.exports = function (grunt) {
 
         watch: {
             styles: {
-                files: ['md/*.md', 'css/*.less', 'js/*.js', '*.html', 'Gruntfile.js', '!css/*.min.css', '!js/*.min.js'],
-                tasks: ['clean:before', 'jshint', 'less', 'uglify', 'processhtml', 'htmlmin', 'markdown', 'clean:after']
+                files: ['src/md/*.md', 'src/css/*.less', 'src/js/*.js', 'src/*.html',
+                            'Gruntfile.js', '!src/css/*.min.css', '!src/js/*.min.js'],
+                tasks: ['jshint', 'less', 'uglify', 'processhtml', 'htmlmin', 'markdown', 'clean:after', 'copy']
             }
         }
     });
@@ -160,6 +149,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-markdown');
 
-    grunt.registerTask('default', ['clean:before', 'jshint', 'uglify', 'less',
-        'processhtml', 'htmlmin', 'markdown', 'clean:after', 'http-server', 'watch']);
+    grunt.registerTask('default', ['jshint', 'uglify', 'less',
+        'processhtml', 'htmlmin', 'markdown', 'clean:after', 'copy', 'http-server', 'watch']);
 };

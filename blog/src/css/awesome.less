@@ -1,6 +1,7 @@
 html, body {
   min-height: 100%;
   margin: 0;
+  font-family: 'Open Sans', sans-serif, 'Microsoft Yahei';
 }
 
 a,
@@ -35,7 +36,6 @@ small {
 
 .container {
   margin: 0 auto;
-  font-family: 'Microsoft Yahei';
 }
 
 .nav-bar {
@@ -94,12 +94,34 @@ small {
   }
 }
 
-.content-container {
+.container {
   .content {
+    p, code, li {
+      font-family: 'Open Sans', sans-serif, 'Microsoft Yahei';
+    }
+
+    code {
+      padding: 0.2em;
+      margin: 0 0.2em;
+      font-size: 85%;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+
     p {
       font-size: 14px;
       line-height: 20px;
       text-indent: 28px;
+
+      img {
+        max-width: 100%;
+        margin-left: -28px;
+      }
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 
@@ -113,7 +135,7 @@ small {
     margin: 0;
   }
 
-  .content-time{
+  .content-time {
     font-size: 12px;
     color: #999;
     margin-bottom: 50px;
@@ -147,7 +169,7 @@ small {
     line-height: 1.15em;
   }
 
-  .content-container {
+  .container {
     padding: 15px 0;
     line-height: 25px;
     font-size: 14px;
@@ -184,7 +206,7 @@ small {
       margin-bottom: 20px;
     }
 
-    .content-container {
+    .container {
       margin-left: 20%;
     }
 
@@ -212,7 +234,7 @@ small {
       margin-bottom: 20px;
     }
 
-    .content-container {
+    .container {
       margin-left: 160px;
     }
   }
@@ -263,18 +285,18 @@ small {
   }
 }
 
-.about{
-  p{
+.about {
+  p {
     font-size: 14px;
     color: #999;
 
-    a{
+    a {
       color: #999;
     }
   }
 }
 
-hr{
+hr {
   border: none;
   border-bottom: solid 1px #eee;
 }
