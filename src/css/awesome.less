@@ -44,6 +44,8 @@ small, p {
   background: #eee;
 
   .nav {
+    position: relative;
+    padding-left: 150px;
     padding-top: 8px;
     padding-bottom: 8px;
 
@@ -53,6 +55,22 @@ small, p {
 
     > .nav-item {
       margin-right: 34px;
+    }
+
+    .nav-brand {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      height: 45px;
+      color: #B7B7B7;
+      font-weight: bolder;
+      margin: auto 50px auto 0;
+      font-size: 39px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      text-shadow: 1px 1px 0px #FFF, 0 0 0 #000;
     }
 
     .nav-item {
