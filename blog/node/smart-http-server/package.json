@@ -1,0 +1,23 @@
+{
+  "name": "smart-http-server",
+  "version": "0.0.1",
+  "description": "Auto-detective unused port, and create http server by nodejs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaguarsy/smart-http-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaguarsy/smart-http-server/issues"
+  },
+  "homepage": "https://github.com/jaguarsy/smart-http-server#readme",
+  "devDependencies": {
+    "ecstatic": "^1.3.1",
+    "q": "^1.4.1"
+  }
+}
