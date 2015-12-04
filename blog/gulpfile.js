@@ -12,10 +12,7 @@ var watch = require('gulp-watch');
 var rename = require('gulp-rename');
 var inline = require('./node/gulp-inline/inline.js');
 var createServer = require('./node/smart-http-server/index.js');
-var http = require('http');
-var ecstatic = require('ecstatic');
-var Q = require('Q');
-var path = require('path');
+var highlight = require('gulp-highlight');
 
 gulp.task('default', ['html', 'markdown', 'watch', 'copy', 'http-server']);
 
@@ -36,6 +33,7 @@ gulp.task('markdown', function () {
     return gulp.src('src/md/*.md')
         .pipe(markdown())
         .pipe(rename({extname: '.md'}))
+        .pipe(highlight())
         .pipe(gulp.dest('md'));
 });
 
