@@ -15,7 +15,7 @@ Go的安装和配置基本是依照这个项目[build-web-application-with-golan
 Atom中较为流行的Go插件是[go-plus](https://github.com/joefitzgerald/go-plus), 在Atom的按`Command + ,`打开Settings界面, 
 在底部的install中可以直接搜索并安装. 然后设置go-plus中的GOPATH和Go的安装目录:
 
-![''](images/go-install-and-ide-building-0.png)
+![''](images/go-install-and-ide-building-1.png)
 
 然后问题就来了, go-plus安装后并不能正常启动. 仔细一看, 原来它还需要一堆第三方插件的支持Orz...
 
