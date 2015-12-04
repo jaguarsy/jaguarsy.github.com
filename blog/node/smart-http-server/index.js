@@ -7,7 +7,7 @@ var path = require('path');
 var Q = require('Q');
 var ecstatic = require('ecstatic');
 
-module.exports = function() {
+module.exports = function () {
     var defaultPort = 8000;
 
     function base(port, targetPath) {
@@ -16,7 +16,7 @@ module.exports = function() {
         targetPath = targetPath || '/';
 
         var server = http.createServer(
-            ecstatic({root: path.join(__dirname, targetPath)})
+            ecstatic({root: path.join(__dirname + '/../..', targetPath)})
         ).listen(port);
 
         server.on('listening', function () {
@@ -42,4 +42,4 @@ module.exports = function() {
     return function (path) {
         getServer(defaultPort, path);
     };
-};
+}();
