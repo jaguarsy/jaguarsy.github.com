@@ -25,6 +25,7 @@
         $title = $('#title'),
         $time = $('#time'),
         $searchform = $('#search-form'),
+        $navItem = $('.nav-item'),
         hash = getHash();
 
     Node.prototype.show = function () {
@@ -185,8 +186,22 @@
         });
     }
 
+    function activeNavItem(obj) {
+        obj = obj || {hash: '#'};
+
+        [].forEach.call($navItem, function (item) {
+            if (item.attributes['href'].value === obj.hash) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
     function init(obj) {
+        activeNavItem(obj);
         $about.hide();
+
         if (!obj) {
             initArticleList();
         } else if (obj.type === 'article') {
