@@ -22,7 +22,7 @@ Atom中较为流行的Go插件是[go-plus](https://github.com/joefitzgerald/go-p
 由于网络原因, `go get`指令一直没有成功过, 只能手动去github下载, 然后去目录中执行`go install`编译.
 
 结果安装golint插件的的过程中碰到了坑爹的无法下载其依赖插件的问题, 貌似是因为被墙的缘故, 即使开了全局代理也没能下载, 所幸Go官方在github提供了Go Tools的镜像.
-项目地址为[https://github.com/golang/tools]('https://github.com/golang/tools').
+项目地址为[https://github.com/golang/tools](https://github.com/golang/tools).
 
 Easy now! 只需要将项目clone或直接下载到本地, 在GOPATH的src目录下创建`golang.org/x/tools`这样的一个三级目录, 然后将项目中的文件全部拷到tools目录中, 
 然后再去goling插件的目录中执行`go install`就可以成功编译了!
