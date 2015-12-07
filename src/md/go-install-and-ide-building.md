@@ -1,4 +1,4 @@
-Go的安装和配置基本是依照这个项目[build-web-application-with-golang](https://github.com/astaxie/build-web-application-with-golang")完成的, 里面还有完整的Go教程,值得一看.
+Go的安装和配置基本是依照这个项目[build-web-application-with-golang](https://github.com/astaxie/build-web-application-with-golang)完成的, 里面还有完整的Go教程,值得一看.
 
 首先你需要准备一把梯子, 然后去Golang的官方下载最新的安装包, 具体过程直接参考上面的github项目. 安装完成后需要设置一下GOPATH环境变量, 稍微提一提Mac下的设置方法(跟linux系统下基本相同):
 
