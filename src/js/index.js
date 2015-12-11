@@ -4,6 +4,11 @@
 (function () {
     'use strict';
 
+    var host = "cagejs.net";
+    if ((host == window.location.host) && (window.location.protocol != "https:")){
+        window.location.protocol = "https";
+    }
+
     function $(selector) {
         if (selector.indexOf('#') > -1) {
             return document.querySelector(selector);

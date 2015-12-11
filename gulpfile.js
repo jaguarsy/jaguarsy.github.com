@@ -49,8 +49,9 @@ gulp.task('http-server', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['src/css/*.*', 'src/js/*.*', 'src/*.html'], function (file) {
-        return gulp.src('src/*.html')
+    gulp.watch(['src/css/*.*', 'src/js/*.*', 'src/index.html'], function (file) {
+        console.log('-----test-----');
+        return gulp.src('src/index.html')
             .pipe(inline({
                 base: 'src/',
                 js: [jshint, uglify],
