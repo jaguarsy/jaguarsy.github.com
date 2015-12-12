@@ -4,10 +4,10 @@
 (function () {
     'use strict';
 
-    var host = "cagejs.net";
-    if ((host == window.location.host) && (window.location.protocol != "https:")){
-        window.location.protocol = "https";
-    }
+    //var host = "cagejs.net";
+    //if ((host == window.location.host) && (window.location.protocol != "https:")){
+    //    window.location.protocol = "https";
+    //}
 
     function $(selector) {
         if (selector.indexOf('#') > -1) {
