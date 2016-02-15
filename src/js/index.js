@@ -187,6 +187,11 @@
             $time.innerText = siblings.current.time;
 
             $content.innerHTML = result;
+
+            [].forEach.call($('pre,code'), function (item) {
+                hljs.highlightBlock(item);
+            });
+
             $container.radioShow();
         });
     }

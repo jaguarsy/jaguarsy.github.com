@@ -114,32 +114,24 @@ small, p {
 
 .container {
   .content {
-    p, code, li {
+    p, pre, code, li {
+      font-size: 14px;
+      line-height: 20px;
       font-family: 'Open Sans', sans-serif, 'Microsoft Yahei';
     }
 
-    code {
-      padding: 0.2em;
-      margin: 0 0.2em;
-      font-size: 85%;
-      background-color: rgba(0, 0, 0, .07);
-      border-radius: 3px;
+    code{
+      display: inline;
+      padding: 0;
     }
 
     p {
-      font-size: 14px;
-      line-height: 20px;
       text-indent: 28px;
 
       img {
         max-width: 100%;
         margin-left: -28px;
       }
-    }
-
-    li {
-      font-size: 14px;
-      line-height: 20px;
     }
   }
 
@@ -205,7 +197,8 @@ small, p {
     .tag {
       background-color: #999;
       color: #fff;
-      padding: 0 8px;
+      padding: 2px 4px;
+      margin-right: 4px;
     }
   }
 }
