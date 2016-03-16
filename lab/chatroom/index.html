@@ -8,12 +8,14 @@
         html, body {
             padding: 0;
             margin: 0;
+            height: 100%;
+            overflow: hidden;
         }
 
         .container {
             max-width: 500px;
             margin: 0 auto;
-            margin-top: 1px;
+            height: 100%;
             border: solid 1px #eee;
         }
 
@@ -36,7 +38,7 @@
         }
 
         .form .form-group {
-            margin-bottom: 12px;;
+            margin-bottom: 8px;
         }
 
         .form-control {
@@ -149,9 +151,9 @@
 </head>
 <body>
 <div class="container">
-    <div class="panel scroll message-list" id="room" style="height: 300px;"></div>
+    <div class="panel scroll message-list" id="room"></div>
     <hr/>
-    <div class="panel" style="">
+    <div class="panel">
         <div class="form">
             <div class="form-group">
                 <button class="btn pull-right" id="changeName" disabled>确定</button>
@@ -160,12 +162,14 @@
                 </div>
             </div>
 
-            <form id="chatForm" class="clearfix">
+            <form id="chatForm">
                 <div class="form-group">
                     <textarea id="content" class="form-control" rows="4" placeholder="内容"></textarea>
                 </div>
-                <button type="submit" class="btn pull-right">提交</button>
-                <small class="text-danger" id="alert"></small>
+                <div class="form-group text-right">
+                    <small class="text-danger" id="alert"></small>
+                    <button type="submit" class="btn">提交</button>
+                </div>
             </form>
         </div>
     </div>

@@ -38,6 +38,19 @@
             $alert = $('#alert'),
             $changeName = $('#changeName');
 
+        var getHeight = function (target) {
+            var sum = $('body').innerHeight();
+
+            target.siblings().each(function () {
+                sum -= $(this).outerHeight(true);
+            });
+
+            return sum;
+        };
+
+        $room.outerHeight(getHeight($room));
+
+
         var addMessage = function (obj, target) {
             var message = $($messageTpl.html()),
                 isSelf = $name.val() === obj.name;
