@@ -114,7 +114,7 @@
 
             var name = $name.val(),
                 content = $content.val(),
-                time = new Date().format('yyyy-MM-dd');
+                time = new Date().format('yyyy-MM-dd hh-mm-ss');
 
             if (!name) {
                 message.error('请先输入姓名');
