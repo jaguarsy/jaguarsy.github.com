@@ -76,8 +76,12 @@
             setName();
         });
 
-        $name.val(localStorage.getItem('name')).trigger('input');
-        setName();
+        var defaultName = localStorage.getItem('name');
+
+        if (defaultName) {
+            $name.val().trigger('input');
+            setName();
+        }
 
         $chatForm.on('submit', function (event) {
             event.preventDefault();
