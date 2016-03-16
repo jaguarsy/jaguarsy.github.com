@@ -79,7 +79,7 @@
         var defaultName = localStorage.getItem('name');
 
         if (defaultName) {
-            $name.val().trigger('input');
+            $name.val(defaultName).trigger('input');
             setName();
         }
 
