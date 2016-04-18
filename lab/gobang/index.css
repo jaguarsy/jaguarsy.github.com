@@ -1,0 +1,154 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Helvetica Neue', 'Microsoft YaHei', Helvetica, Arial, sans-serif !important;
+}
+
+.container {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.container .rank-list {
+    position: absolute;
+    width: 150px;
+    padding: 12px;
+    left: -174px;
+    height: 100%;
+    color: #666;
+}
+
+.rank-list .rank-header {
+    color: #999;
+    font-size: 20px;
+    font-weight: bolder;
+    border-bottom: solid 2px #eee;
+}
+
+.rank-list .rank-body {
+    font-size: 14px;
+    counter-reset: steps;
+}
+
+.rank-list .rank-item {
+    counter-increment: steps;
+    position: relative;
+}
+
+.rank-list .rank-item:before {
+    content: counter(steps) '.';
+    position: absolute;
+    left: -15px;
+}
+
+.rank-list .rank-item,
+.rank-list .rank-header {
+    padding: 6px 12px;
+}
+
+.rank-item:not(:last-child) {
+    border-bottom: solid 1px #eee;
+}
+
+.panel {
+    padding: 8px;
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 0;
+    line-height: 34px;
+}
+
+.hover-canvas {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.hover-operation {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+}
+
+.form-control {
+    border: solid 1px #fff;
+    padding: 12px;
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: bolder;
+    border-radius: 4px;
+    text-align: center;
+    width: 60%;
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.btn {
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 4px;
+    background: #fff;
+    background-image: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #ddd;
+}
+
+.btn:active,
+.btn.active {
+    background: #aaa;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.radio-group-inline {
+    margin-bottom: 8px;
+}
+
+.radio-group-inline label {
+    padding: 6px;
+    border: solid 1px #bbb;
+    background: transparent;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.radio-group-inline [type='radio'] {
+    display: none;
+}
+
+.radio-group-inline [type='radio']:checked + label {
+    border: solid 1px #F5A623;
+    box-shadow: 0 0 2px #F5A623;
+    background: rgba(0, 0, 0, .4);
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}

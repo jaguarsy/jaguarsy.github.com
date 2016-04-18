@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+
+    <title>Gobang Battle</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="underscore-min.js"></script>
+    <script src="https://cdn.wilddog.com/js/client/current/wilddog.js"></script>
+    <script src="db.js"></script>
+    <script src="storage.js"></script>
+    <script src="gobang-ai-fast.js"></script>
+    <script src="gobang.js"></script>
+</head>
+<body>
+<div class="rank-list pull-right" style="margin-right: 20px;">
+    <div class="rank-header">
+        龙虎榜
+    </div>
+    <div class="rank-body" id="rankList">
+    </div>
+</div>
+<div class="container">
+
+    <div class="panel" id="scorePanel">
+        <small style="margin-right:12px;">当前落子:<strong class="currentPlayer">未知</strong></small>
+        <small style="margin-right:12px;">用时:<span id="spendTime">0.0</span></small>
+        <small>步数:<span id="step">0</span></small>
+        <button class="btn pull-right" id="surrender" style="display: none">认输</button>
+    </div>
+    <div style="position: relative">
+        <canvas id="gobang">
+            Your browser doesn't include support for the canvas tag.
+        </canvas>
+        <canvas id="hover" class="hover-canvas"></canvas>
+
+        <div id="operationPanel" class="hover-operation">
+            <h3>输入昵称:</h3>
+            <div class="form-group">
+                <input type="text" class="form-control" id="username">
+            </div>
+            <h3>选择难度:</h3>
+            <div class="radio-group-inline">
+                <input type="radio" name="game-degree" id="gameDegree1" value="1">
+                <label for="gameDegree1">简单</label>
+                <input type="radio" name="game-degree" id="gameDegree2" value="2">
+                <label for="gameDegree2">中等</label>
+                <input type="radio" name="game-degree" id="gameDegree3" value="3">
+                <label for="gameDegree3">困难</label>
+                <input type="radio" name="game-degree" id="gameDegree4" value="4">
+                <label for="gameDegree4">极难</label>
+            </div>
+            <h3>选择先后手:</h3>
+            <div class="radio-group-inline" style="margin-bottom: 30px;">
+                <input type="radio" name="game-hold" id="gameHold1" value="0">
+                <label for="gameHold1">先手(黑子)</label>
+                <input type="radio" name="game-hold" id="gameHold2" value="1">
+                <label for="gameHold2">后手(白子)</label>
+            </div>
+            <button class="btn" style="width: 120px" id="start">开始</button>
+        </div>
+    </div>
+    <div id="logs" style="overflow: auto">
+
+    </div>
+</div>
+<script>
+    (function (doc) {
+        'use strict';
+
+        var container = doc.querySelector('.container');
+        var scorePanel = doc.querySelector('#scorePanel');
+        var goBangDom = doc.querySelector("#gobang");
+        var hoverDom = doc.querySelector('#hover');
+        var username = doc.querySelector('#username');
+        var gameDegree = doc.querySelectorAll('[name="game-degree"]');
+        var chooseHold = doc.querySelector('#chooseHold');
+        var gameHold = doc.querySelectorAll('[name="game-hold"]');
+        var operationPanel = doc.querySelector('#operationPanel');
+        var config = storage.getObject('config') || {};
+        var start = doc.querySelector('#start');
+        var surrender = doc.querySelector('#surrender');
+        var logs = doc.querySelector('#logs');
+        var spendTime = doc.querySelector('#spendTime');
+        var spendTimeCount = 0;
+        var step = doc.querySelector('#step');
+        var stepCount = 0;
+        var rankList = doc.querySelector('#rankList');
+        var degreeEnum = {1: '简单', 2: '中等', 3: '困难', 4: '极难'};
+        var holdEnum = {0: '执黑(先手)', 1: '执白(后手)'};
+
+        var log = function (message) {
+            logs.innerHTML += message + ' - ' + new Date().toLocaleString();
+            logs.innerHTML += '<br/>';
+            log.scrollTop = log.clientHeight
+        };
+
+        var getDom = function (str) {
+            var result = document.createElement('div');
+            result.innerHTML = str;
+            return result.childNodes[0];
+        };
+
+        var initRank = function () {
+            db.getRankList(function (list) {
+                rankList.innerHTML = '';
+
+                for (var i = list.length - 1; i > -1; i--) {
+                    var item = list[i];
+                    var dom = getDom('<div class="rank-item"></div>');
+                    dom.innerText = item.username + ': ' +
+                        degreeEnum[item.degree] + ', ' +
+                        holdEnum[item.hold] + ', ' +
+                        item.step + '步, ' +
+                        parseInt(item.spend / 1000) + '秒';
+                    rankList.appendChild(dom);
+                }
+            });
+        };
+        initRank();
+
+        goBangDom.width = container.clientWidth;
+        goBangDom.height = +container.clientWidth;
+        hoverDom.width = goBangDom.width;
+        hoverDom.height = goBangDom.height;
+        logs.style.height =
+            (container.clientHeight -
+            scorePanel.clientHeight -
+            goBangDom.clientHeight - 10) + 'px';
+
+        var game = new GoBang(goBangDom, hoverDom, scorePanel);
+        game.init();
+
+        username.value = config.username || '';
+        username.addEventListener('change', function () {
+            config.username = event.target.value;
+            storage.setItem('config', config);
+        });
+
+        gameDegree[(config.degree - 1) || 0].checked = true;
+        gameHold[config.hold || 0].checked = true;
+
+        Array.prototype.forEach.call(gameDegree, function (item) {
+            item.addEventListener('click', function (event) {
+                config.degree = +event.target.value;
+                storage.setItem('config', config);
+            });
+        });
+
+        Array.prototype.forEach.call(gameHold, function (item) {
+            item.addEventListener('click', function (event) {
+                config.hold = +event.target.value;
+                storage.setItem('config', config);
+            });
+        });
+
+        var startHandler = function () {
+            spendTimeCount = 0;
+            spendTime.innerText = '0.0';
+            stepCount = 0;
+            step.innerText = '0';
+            operationPanel.style.display = 'none';
+            surrender.style.display = 'inline';
+        };
+
+        var endHandler = function () {
+            operationPanel.style.display = 'block';
+            surrender.style.display = 'none';
+        };
+
+        var record = function () {
+            db.addRankRecord({
+                username: config.username,
+                degree: game.hardness,
+                spend: spendTimeCount,
+                step: stepCount,
+                hold: game.userHold
+            });
+        };
+
+        var t;
+
+        surrender.addEventListener('click', function () {
+            alert((game.userHold === 0 ? '黑子' : '白子') + '认输了');
+            clearInterval(t);
+            endHandler();
+            game.init();
+        });
+
+        game.addListener('finish', function () {
+            if (game.currentPlayer === game.userHold) {
+                record();
+            }
+
+            if (confirm((game.currentPlayer === 0 ? '黑子' : '白子') + '胜,重新开始?')) {
+                startHandler();
+                game.start();
+            } else {
+                endHandler();
+            }
+            game.init();
+        });
+        game.addListener('thinking', function () {
+            t = setInterval(function () {
+                spendTimeCount += 100;
+                spendTime.innerText = (spendTimeCount / 1000).toFixed(1);
+            }, 100);
+        });
+
+        game.addListener('endThink', function () {
+            clearInterval(t);
+        });
+
+        game.addListener('move', function (player) {
+            if (player === game.userHold) {
+                stepCount++;
+                step.innerText = stepCount.toString();
+            }
+        });
+
+        start.addEventListener('click', function () {
+            startHandler();
+            game.start(config.hold, config.degree);
+        });
+    })(window.document);
+</script>
+</body>
+</html>
