@@ -2,7 +2,6 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
     font-family: 'Helvetica Neue', 'Microsoft YaHei', Helvetica, Arial, sans-serif !important;
 }
 
@@ -10,15 +9,10 @@ html, body {
     max-width: 520px;
     width: 100%;
     margin: 0 auto;
-    height: 100%;
 }
 
 .container .rank-list {
-    position: absolute;
-    width: 150px;
     padding: 12px;
-    left: -174px;
-    height: 100%;
     color: #666;
 }
 

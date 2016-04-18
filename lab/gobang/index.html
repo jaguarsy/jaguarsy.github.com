@@ -16,13 +16,6 @@
     <script src="gobang.js"></script>
 </head>
 <body>
-<div class="rank-list pull-right" style="margin-right: 20px;">
-    <div class="rank-header">
-        龙虎榜
-    </div>
-    <div class="rank-body" id="rankList">
-    </div>
-</div>
 <div class="container">
 
     <div class="panel" id="scorePanel">
@@ -63,8 +56,13 @@
             <button class="btn" style="width: 120px" id="start">开始</button>
         </div>
     </div>
-    <div id="logs" style="overflow: auto">
 
+    <div class="rank-list">
+        <div class="rank-header">
+            龙虎榜
+        </div>
+        <div class="rank-body" id="rankList">
+        </div>
     </div>
 </div>
 <script>
@@ -83,7 +81,6 @@
         var config = storage.getObject('config') || {};
         var start = doc.querySelector('#start');
         var surrender = doc.querySelector('#surrender');
-        var logs = doc.querySelector('#logs');
         var spendTime = doc.querySelector('#spendTime');
         var spendTimeCount = 0;
         var step = doc.querySelector('#step');
@@ -91,12 +88,6 @@
         var rankList = doc.querySelector('#rankList');
         var degreeEnum = {1: '简单', 2: '中等', 3: '困难', 4: '极难'};
         var holdEnum = {0: '执黑(先手)', 1: '执白(后手)'};
-
-        var log = function (message) {
-            logs.innerHTML += message + ' - ' + new Date().toLocaleString();
-            logs.innerHTML += '<br/>';
-            log.scrollTop = log.clientHeight
-        };
 
         var getDom = function (str) {
             var result = document.createElement('div');
@@ -126,10 +117,6 @@
         goBangDom.height = +container.clientWidth;
         hoverDom.width = goBangDom.width;
         hoverDom.height = goBangDom.height;
-        logs.style.height =
-            (container.clientHeight -
-            scorePanel.clientHeight -
-            goBangDom.clientHeight - 10) + 'px';
 
         var game = new GoBang(goBangDom, hoverDom, scorePanel);
         game.init();
