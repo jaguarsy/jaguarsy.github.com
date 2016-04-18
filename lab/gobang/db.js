@@ -2,7 +2,7 @@
  * Created by johnnycage on 16/4/18.
  */
 var db = (function () {
-    var db = new Wilddog("https://gobang.wilddogio.com/");
+    var db = new Wilddog("https://go-bang.wilddogio.com/");
     var rank = db.child('rank');
     var tactics = db.child('tactics');
 
