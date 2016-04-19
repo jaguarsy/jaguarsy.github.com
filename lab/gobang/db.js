@@ -10,8 +10,6 @@ var db = (function () {
         return a1 - a2;
     };
 
-    var tacticsCache = {};
-
     return {
         addRankRecord: function (record) {
             rank.push(record);
@@ -31,22 +29,6 @@ var db = (function () {
 
                 listener && listener(list);
             });
-        },
-        getTacticRet: function (board, player) {
-            var key = JSON.stringify(board) + player;
-            if (tacticsCache[key]) {
-                return tacticsCache[key];
-            }
-
-            return null;
-        },
-        setTacticRet: function (board, player, ret) {
-            var key = JSON.stringify(board) + player;
-            if (tacticsCache[key]) {
-                return;
-            }
-
-            tacticsCache[key] = ret;
         }
     };
 

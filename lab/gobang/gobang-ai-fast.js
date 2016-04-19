@@ -184,10 +184,7 @@ var AI = function () {
                         return [0x7fffffff * 10, [i, j]];
                     }
                 }
-                var enm_ret = db.getTacticRet(grid, switchPlayer(crtPlayer)) ||
-                    AI.play(grid, switchPlayer(crtPlayer), depth - 1, -ret[0]);
-
-                db.setTacticRet(grid, switchPlayer(crtPlayer), enm_ret);
+                var enm_ret = AI.play(grid, switchPlayer(crtPlayer), depth - 1, -ret[0]);
 
                 grid[i][j] = -1;
 
