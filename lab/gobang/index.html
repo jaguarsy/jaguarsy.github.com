@@ -127,8 +127,10 @@
             storage.setItem('config', config);
         });
 
-        gameDegree[(config.degree - 1) || 0].checked = true;
-        gameHold[config.hold || 0].checked = true;
+        config.degree = config.degree || 1;
+        config.hold = config.hold || 0;
+        gameDegree[config.degree - 1].checked = true;
+        gameHold[config.hold].checked = true;
 
         Array.prototype.forEach.call(gameDegree, function (item) {
             item.addEventListener('click', function (event) {
