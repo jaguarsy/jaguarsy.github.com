@@ -1,7 +1,13 @@
 html, body {
   min-height: 100%;
   margin: 0;
-  font-family: 'Open Sans', sans-serif, 'Microsoft Yahei';
+  color: #555;
+  font-family: -apple-system, "Helvetica Neue",
+  Arial, "PingFang SC", "Hiragino Sans GB", STHeiti,
+  "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC",
+  "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC",
+  "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei",
+  SimSun, sans-serif;
 }
 
 a,
@@ -115,12 +121,17 @@ small, p {
 .container {
   .content {
     p, pre, code, li {
-      font-size: 14px;
-      line-height: 20px;
-      font-family: 'Open Sans', sans-serif, 'Microsoft Yahei';
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 20px 0;
     }
 
-    code{
+    code, kbd, pre, samp {
+      font-size: 14px;
+      font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    code {
       display: inline;
       padding: 0;
     }
@@ -207,13 +218,13 @@ small, p {
 @media (min-width: 480px) {
   .container {
     width: 80%;
-    max-width: 1000px;
+    max-width: 700px;
   }
 
   .article {
 
     .title {
-      margin-left: 20%;
+      margin-left: 25%;
       margin-bottom: 20px;
     }
 
